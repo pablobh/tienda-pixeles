@@ -22,7 +22,7 @@
 @import '../../node_modules/bulma/sass/elements/button';
 @import '../../node_modules/bulma/sass/elements/container';
 // @import '../../node_modules/bulma/sass/elements/content';
-// @import '../../node_modules/bulma/sass/elements/icon';
+@import '../../node_modules/bulma/sass/elements/icon';
 // @import '../../node_modules/bulma/sass/elements/image';
 //@import '../../node_modules/bulma/sass/elements/notification';
 // @import '../../node_modules/bulma/sass/elements/progress';
@@ -76,6 +76,10 @@
 //@import '../../node_modules/bulma/sass/layout/hero';
 @import '../../node_modules/bulma/sass/layout/section';
 @import '../../node_modules/bulma/sass/layout/footer';
+
+/* Bulma Badge */
+@import '../../node_modules/@creativebulma/bulma-badge/src/sass/index';
+
 
 /* Específico del proyecto */
 @import 'components/global';

@@ -1,3 +1,7 @@
+import Login from './Login';
+import CartWidget from './CartWidget';
+import ItemListContainer from './ItemListContainer';
+
 function Navbar() {
     document.addEventListener('DOMContentLoaded', () => {
         const $navbarBurgers = Array.prototype.slice.call(document.querySelectorAll('.navbar-burger'), 0);
@@ -60,16 +64,16 @@ function Navbar() {
                                 </div>
                             </div>
                         </div>
-
                         <div className="navbar-end">
-                            <div className="navbar-item">
-                                <div className="buttons">
-                                    <a className="button is-primary" href="index.html">
-                                        <strong>Crear cuenta</strong>
-                                    </a>
-                                    <a className="button is-light" href="index.html">
-                                        Login
-                                    </a>
+                            <Login />
+                            <div className="navbar-item has-dropdown is-hoverable">
+                                <CartWidget cantidad="5" />
+                                <div className="navbar-dropdown">
+                                    <ItemListContainer nombreProducto="Producto 01"/>
+                                    <ItemListContainer nombreProducto="Producto 02"/>
+                                    <ItemListContainer nombreProducto="Producto 03"/>
+                                    <ItemListContainer nombreProducto="Producto 04"/>
+                                    <ItemListContainer nombreProducto="Producto 05"/>
                                 </div>
                             </div>
                         </div>
