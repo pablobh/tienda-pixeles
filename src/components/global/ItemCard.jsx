@@ -22,7 +22,7 @@ const ItemCard = (props) => {
                         <p className="has-text-secondary is-size-7 mb-0">{props.categoriaProducto}</p>
                         <p className="has-text-weight-bold is-size-4 is-justify-content-end">
                             <span className="is-size-6 regular-price-product">
-                                ${props.precioProducto}
+                                {props.precioProducto}
                             </span>
                         </p>
                         <div className="field has-addons has-addons-centered">
