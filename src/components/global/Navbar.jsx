@@ -1,6 +1,7 @@
 import Login from './Login';
-import CartWidget from './CartWidget';
+import CartWidget from '../Cart/CartWidget';
 import ItemListContainer from './ItemListContainer';
+import { Link } from 'react-router-dom';
 
 function Navbar() {
     document.addEventListener('DOMContentLoaded', () => {
@@ -21,9 +22,9 @@ function Navbar() {
             <nav className="navbar" role="navigation" aria-label="main navigation">
                 <div className="container">
                     <div className="navbar-brand">
-                        <a className="navbar-item" href="https://4topixel.com">
+                        <Link to="/" className="navbar-item">
                             <img src="https://cdn-5d61ec94f911c80950251c4d.closte.com/wp-content/themes/contratopedia/dist/images/4topixel-horizontal-negro_c9db5e35.svg"  width="112" height="28" alt="4to Pixel" />
-                        </a>
+                        </Link>
                         {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
                         <a role="button" className="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarPrincipal">
                             <span aria-hidden="true"></span>
@@ -34,33 +35,33 @@ function Navbar() {
 
                     <div id="navbarPrincipal" className="navbar-menu">
                         <div className="navbar-start">
-                            <a className="navbar-item" href="index.html">
+                            <Link to="/" className="navbar-item">
                                 Inicio
-                            </a>
+                            </Link>
 
-                            <a className="navbar-item" href="index.html">
+                            <Link to="/equipo" className="navbar-item">
                                 El Equipo
-                            </a>
+                            </Link>
 
                             <div className="navbar-item has-dropdown is-hoverable">
                                 {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
                                 <a className="navbar-link">
-                                    Servicios
+                                    Categorías
                                 </a>
 
                                 <div className="navbar-dropdown">
-                                    <a className="navbar-item" href="index.html">
+                                    <Link to="/categoria/branding" className="navbar-item">
                                         Branding
-                                    </a>
-                                    <a className="navbar-item" href="index.html">
+                                    </Link>
+                                    <Link to="/categoria/web" className="navbar-item">
                                         Web
-                                    </a>
-                                    <a className="navbar-item" href="index.html">
+                                    </Link>
+                                    <Link to="/categoria/fotografia" className="navbar-item">
                                         Fotografía
-                                    </a>
-                                    <a className="navbar-item" href="index.html">
+                                    </Link>
+                                    <Link to="/categoria/social-media" className="navbar-item">
                                         Social Media
-                                    </a>
+                                    </Link>
                                 </div>
                             </div>
                         </div>

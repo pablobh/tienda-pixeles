@@ -1,5 +1,5 @@
 import {useState, useEffect} from 'react';
-import ItemCard from "./ItemCard";
+import ProductCard from "./ProductCard";
 
 const FeaturedProducts = () => {
     const [items, setItems] = useState([]);
@@ -9,34 +9,43 @@ const FeaturedProducts = () => {
             nombre: 'Nombre Producto 01',
             descripcion: 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Asperiores quam minima temporibus fuga, porro sapiente nobis, corporis deserunt eos provident dignissimos, amet doloremque repudiandae ipsum saepe? Illum dolores assumenda laborum',
             categoria: 'Branding',
-            precio: 6500,
-            foto: 'https://picsum.photos/800/850',
-            thumb: 'https://picsum.photos/300/350'
+            precio: 16500,
+            foto: 'https://picsum.photos/800/800',
+            thumb: 'https://picsum.photos/300/300'
         },
         {
             id: 2,
             nombre: 'Nombre Producto 02',
             descripcion: 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Asperiores quam minima temporibus fuga, porro sapiente nobis, corporis deserunt eos provident dignissimos, amet doloremque repudiandae ipsum saepe? Illum dolores assumenda laborum',
-            categoria: 'Branding',
-            precio: 4700,
-            foto: 'https://picsum.photos/800/851',
-            thumb: 'https://picsum.photos/300/351'
+            categoria: 'Fotografía',
+            precio: 14700,
+            foto: 'https://picsum.photos/801/800',
+            thumb: 'https://picsum.photos/301/300'
         },
         {
             id: 3,
             nombre: 'Nombre Producto 03',
             descripcion: 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Asperiores quam minima temporibus fuga, porro sapiente nobis, corporis deserunt eos provident dignissimos, amet doloremque repudiandae ipsum saepe? Illum dolores assumenda laborum',
             categoria: 'Branding',
-            precio: 3500,
-            foto: 'https://picsum.photos/800/849',
-            thumb: 'https://picsum.photos/300/349'
+            precio: 13500,
+            foto: 'https://picsum.photos/800/801',
+            thumb: 'https://picsum.photos/300/301'
+        },
+        {
+            id: 4,
+            nombre: 'Nombre Producto 04',
+            descripcion: 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Asperiores quam minima temporibus fuga, porro sapiente nobis, corporis deserunt eos provident dignissimos, amet doloremque repudiandae ipsum saepe? Illum dolores assumenda laborum',
+            categoria: 'Web',
+            precio: 10500,
+            foto: 'https://picsum.photos/801/801',
+            thumb: 'https://picsum.photos/301/301'
         },
     ]
 
     const getProducts = new Promise((resolve, reject) => {
         setTimeout(() => {
             resolve(products);
-        }, 800)
+        }, 500)
     });
 
     useEffect(() => {
@@ -53,7 +62,7 @@ const FeaturedProducts = () => {
                     <>
                         {
                             items.map((item, index) => (
-                                <ItemCard
+                                <ProductCard
                                     key = {index}
                                     fotoProducto = {item.thumb}
                                     nombreProducto = {item.nombre}

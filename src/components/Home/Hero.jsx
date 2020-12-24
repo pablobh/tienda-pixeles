@@ -1,11 +1,11 @@
-function Hero() {
+function Hero(props) {
     return (
         <section className="section is-primary">
             <div className="container">
                 <div className="columns">
                     <div className="column">
-                        <h1 className="title">Tienda Pixeles</h1>
-                        <p>Aquí van a estar cosas muy interesantes y divertidas de mi tienda online</p>
+                        <h1 className="title">{props.titulo}</h1>
+                        <p>{props.mensaje}</p>
                     </div>
                 </div>
             </div>

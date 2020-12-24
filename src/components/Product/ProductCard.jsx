@@ -1,6 +1,7 @@
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 
-const ItemCard = (props) => {
+const ProductCard = (props) => {
     const [cantidad, cambiarCantidad] = useState(0);
 
     function quitarCantidad() {
@@ -10,20 +11,20 @@ const ItemCard = (props) => {
     }
     return (
         <div className="column">
-            <div className="card has-background-white has-shadow" style={{height: '100%', radius: '3px' }}>
-                <div className="card-image has-text-centered pt-4">
-                    <a href="!#">
+            <div className="card has-background-white has-shadow" style={{height: '100%', radius: '6px' }}>
+                <div className="card-image has-text-centered">
+                    <Link to="/producto">
+                    <figure class="image is-square">
                         <img src={props.fotoProducto} alt="Imagen del producto" />
-                    </a>
+                    </figure>
+                    </Link>
                 </div>
                 <div className="card-content">
                     <div className="content">
-                        <h5 className="is-size-5 has-text-weight-normal title-product-card">{props.nombreProducto}</h5>
-                        <p className="has-text-secondary is-size-7 mb-0">{props.categoriaProducto}</p>
-                        <p className="has-text-weight-bold is-size-4 is-justify-content-end">
-                            <span className="is-size-6 regular-price-product">
-                                {props.precioProducto}
-                            </span>
+                        <p className="has-text-grey is-uppercase is-size-6 mb-0">{props.categoriaProducto}</p>
+                        <h5 className="has-text-primary is-size-4">{props.nombreProducto}</h5>
+                        <p className="has-text-weight-normal is-size-3 has-text-grey-dark has-text-centered my-2">
+                            {props.precioProducto}
                         </p>
                         <div className="field has-addons has-addons-centered">
                             <div className="control">
@@ -37,8 +38,8 @@ const ItemCard = (props) => {
                             </div>
                         </div>
                         <div className="field is-grouped is-grouped-centered">
-                            <a className="button is-info mr-2" href="!#">Ver detalles</a>
-                            <a className="button is-primary" href="!#">Agregar al carrito</a>
+                            <Link to="/producto/1" className="button is-info mr-2">Ver detalles</Link>
+                            <Link to="/carrito" className="button is-primary">Agregar al carrito</Link>
                         </div>
                     </div>
                 </div>
@@ -47,4 +48,4 @@ const ItemCard = (props) => {
     );
 }
 
-export default ItemCard;
+export default ProductCard;
