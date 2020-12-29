@@ -1,15 +1,15 @@
 import ProductCard from "./ProductCard";
 
-const FeaturedProducts = ({items}) => {
+const RegularProducts = ({items}) => {
     const productosDisponibles = JSON.parse(localStorage.getItem('productosDisponiblesLocal'));
-    const productosDestacados = productosDisponibles.filter(producto => producto.destacado === true)
+    const productosRegulares = productosDisponibles.filter(producto => producto.destacado === false)
     return (
         <div className="columns is-multiline pb-6 px-5">
             {
-                productosDestacados.length ?
+                productosRegulares.length ?
                     <>
                         {
-                            productosDestacados.map((item, index) => (
+                            productosRegulares.map((item, index) => (
                                 <ProductCard
                                     key = {index}
                                     idProducto = {item.id}
@@ -19,7 +19,7 @@ const FeaturedProducts = ({items}) => {
                                     categoriaProducto = {item.categoria}
                                     categoriaBonitaProducto = {item.categoriaBonita}
                                     precioProducto = {Intl.NumberFormat('es-CO', {style: 'currency', currency: 'COP', minimumFractionDigits: 0}).format(item.precio)}
-                                    cantidadColumnas = {4}
+                                    cantidadColumnas = {3}
                                 />
                             ))
                         }
@@ -30,4 +30,4 @@ const FeaturedProducts = ({items}) => {
     )
 }
 
-export default FeaturedProducts;
+export default RegularProducts;

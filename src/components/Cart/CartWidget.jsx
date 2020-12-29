@@ -7,7 +7,7 @@ const CartWidget = (props) => {
                 <a href="!#">
                     <div className="icon has-text-success">
                         <GrCart />
-                        <span class="badge is-right is-info has-text-weight-bold">
+                        <span className="badge is-right is-info has-text-weight-bold">
                             {props.cantidad}
                         </span>
                     </div>

@@ -22,3 +22,9 @@ $body-background-color:     $cremita;
 $pageMargin:                2rem;
 $spacer:                    $pageMargin;
 $radius:                    13px;
+
+$table-cell-border:         1px solid $verde;
+$table-body-background-color:   rgba(255, 255, 255, 0.568);
+$table-striped-row-even-background-color: rgba($verde, .1);
+$table-row-hover-background-color: rgba($verde, .55);
+$table-striped-row-even-hover-background-color: rgba($verde, .55);

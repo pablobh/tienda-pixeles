@@ -35,34 +35,20 @@ function Navbar() {
 
                     <div id="navbarPrincipal" className="navbar-menu">
                         <div className="navbar-start">
-                            <Link to="/" className="navbar-item">
-                                Inicio
-                            </Link>
-
-                            <Link to="/equipo" className="navbar-item">
-                                El Equipo
-                            </Link>
 
                             <div className="navbar-item has-dropdown is-hoverable">
-                                {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
-                                <a className="navbar-link">
-                                    Categorías
-                                </a>
-
-                                <div className="navbar-dropdown">
-                                    <Link to="/categoria/branding" className="navbar-item">
-                                        Branding
-                                    </Link>
-                                    <Link to="/categoria/web" className="navbar-item">
-                                        Web
-                                    </Link>
-                                    <Link to="/categoria/fotografia" className="navbar-item">
-                                        Fotografía
-                                    </Link>
-                                    <Link to="/categoria/social-media" className="navbar-item">
-                                        Social Media
-                                    </Link>
-                                </div>
+                                <Link to="/categoria/branding" className="navbar-item">
+                                    Branding
+                                </Link>
+                                <Link to="/categoria/web" className="navbar-item">
+                                    Web
+                                </Link>
+                                <Link to="/categoria/fotografia" className="navbar-item">
+                                    Fotografía
+                                </Link>
+                                <Link to="/categoria/social-media" className="navbar-item">
+                                    Social Media
+                                </Link>
                             </div>
                         </div>
                         <div className="navbar-end">
