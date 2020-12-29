@@ -7,6 +7,7 @@ const Category = () => {
     const categoria = nombre_categoria;
     const productosDisponibles = JSON.parse(localStorage.getItem('productosDisponiblesLocal'));
     const productosCategoria = productosDisponibles.filter(producto => producto.categoria === categoria)
+    const nombre_categoria_espacios = nombre_categoria.replace("-", " ");
     console.log(productosCategoria);
     return (
         nombre_categoria ?
@@ -19,7 +20,7 @@ const Category = () => {
                                 Categoría
                             </h3>
                             <h2 className="title is-2 has-text-naranja is-capitalized">
-                                {nombre_categoria}
+                                {nombre_categoria_espacios}
                             </h2>
                             <div className="columns is-multiline pb-6 px-5">
                                 {

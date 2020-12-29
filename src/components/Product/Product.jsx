@@ -35,7 +35,7 @@ const Product = (props) => {
                                             {producto.nombre}
                                         </h1>
                                         <p className="subtitle is-5 is-uppercase has-text-grey-light ">
-                                            {producto.categoria} / SKU: {producto.id}
+                                            {producto.categoriaBonita} / SKU: {producto.id}
                                         </p>
                                         <p className="is-size-3 is-uppercase has-text-morado">
                                             {Intl.NumberFormat('es-CO', {style: 'currency', currency: 'COP', minimumFractionDigits: 0}).format(producto.precio)}
