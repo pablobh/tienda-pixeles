@@ -1,7 +1,7 @@
 import { FiAlertOctagon } from 'react-icons/fi';
 import { useParams } from "react-router-dom";
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 
 const Product = (props) => {
     const {id} = useParams();
@@ -14,7 +14,15 @@ const Product = (props) => {
 
     const idProducto = parseInt(id);
     const productosDisponibles = JSON.parse(localStorage.getItem('productosDisponiblesLocal'));
-    const productoSingle = productosDisponibles.filter(producto => producto.id === idProducto)
+    const productoSingle = productosDisponibles.filter(producto => producto.id === idProducto);
+
+    /* Agregar al carrito */
+    let historialRutas = useHistory();
+
+    const handleClickAgregar = (e) => {
+        alert(`Agregando al carrito el producto con ID ${idProducto}`);
+        historialRutas.push("/carrito");
+    }
 
     return (
         id ?
@@ -61,7 +69,7 @@ const Product = (props) => {
                                             <div className="column is-half has-text-right">
                                                 <div className="field">
                                                     <div className="control">
-                                                        <Link to="/carrito" className="button is-primary">Agregar al carrito</Link>
+                                                        <button onClick={handleClickAgregar} id="agregarCarrito" className="button is-primary">Agregar al carrito</button>
                                                     </div>
                                                 </div>
                                             </div>
