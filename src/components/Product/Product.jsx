@@ -1,10 +1,20 @@
 import { FiAlertOctagon } from 'react-icons/fi';
 import { useParams } from "react-router-dom";
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
+import { getFirestore } from "./../../firebase";
 
 const Product = (props) => {
     const {id} = useParams();
+
+    /* Agregar al carrito */
+    let historialRutas = useHistory();
+    const handleClickAgregar = (e) => {
+        alert(`Agregando al carrito el producto con ID ${id}`);
+        historialRutas.push("/carrito");
+    }
+
+    /* Manejar las cantidades a agregar */
     const [cantidad, cambiarCantidad] = useState(0);
     function quitarCantidad() {
         if (cantidad) {
@@ -12,72 +22,75 @@ const Product = (props) => {
         }
     }
 
-    const idProducto = parseInt(id);
-    const productosDisponibles = JSON.parse(localStorage.getItem('productosDisponiblesLocal'));
-    const productoSingle = productosDisponibles.filter(producto => producto.id === idProducto);
+    /* Cargar desde Firebase los detalles del producto */
+    const [product, setProduct] = useState(null);
+    const db = getFirestore();
 
-    /* Agregar al carrito */
-    let historialRutas = useHistory();
-
-    const handleClickAgregar = (e) => {
-        alert(`Agregando al carrito el producto con ID ${idProducto}`);
-        historialRutas.push("/carrito");
+    const getProductsFromDB = () => {
+        db.collection('productos').doc(id).get()
+        .then(doc => {
+            if (doc.exists) {
+                setProduct(doc.data());
+            }
+        })
+        .catch(e => console.log(e));
     }
+
+    useEffect(() => {
+        getProductsFromDB();
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [])
 
     return (
         id ?
         <section className="section">
             {
-                productoSingle.length ?
+                product ?
                     <div className="container">
-                        {
-                            productoSingle.map((producto, index) => (
-                                <div className="columns pt-3 pb-6 px-4 has-background-white" key={index}>
-                                    <div className="column is-6">
-                                        <figure className="image is-square has-shadow">
-                                            <img src={producto.foto} alt="Foto gigante del producto" />
-                                        </figure>
-                                    </div>
-                                    <div className="column is-6">
-                                        <h1 className="title is-2 has-text-primary">
-                                            {producto.nombre}
-                                        </h1>
-                                        <p className="subtitle is-5 is-uppercase has-text-grey-light ">
-                                            {producto.categoriaBonita} / SKU: {producto.id}
-                                        </p>
-                                        <p className="is-size-3 is-uppercase has-text-morado">
-                                            {Intl.NumberFormat('es-CO', {style: 'currency', currency: 'COP', minimumFractionDigits: 0}).format(producto.precio)}
-                                        </p>
-                                        <hr />
-                                        <p className="content">
-                                            {producto.descripcion}
-                                        </p>
-                                        <div className="columns">
-                                            <div className="column is-half">
-                                                <div className="field has-addons">
-                                                    <div className="control">
-                                                        <button className="button is-danger is-light" disabled={!cantidad ? 'disabled' : null } onClick={quitarCantidad}>-</button>
-                                                    </div>
-                                                    <div className="control">
-                                                        <input className="input is-light has-text-centered is-narrow" type="number" value={cantidad} readOnly/>
-                                                    </div>
-                                                    <div className="control">
-                                                        <button className="button is-success is-light" onClick={() => cambiarCantidad(cantidad + 1)}>+</button>
-                                                    </div>
-                                                </div>
+                        <div className="columns pt-3 pb-6 px-4 has-background-white">
+                            <div className="column is-6">
+                                <figure className="image is-square has-shadow">
+                                    <img src={product.foto} alt="Foto gigante del producto" />
+                                </figure>
+                            </div>
+                            <div className="column is-6">
+                                <h1 className="title is-2 has-text-primary">
+                                    {product.nombre}
+                                </h1>
+                                <p className="subtitle is-5 is-uppercase has-text-grey-light ">
+                                    {product.categoriaBonita} / SKU: {product.id}
+                                </p>
+                                <p className="is-size-3 is-uppercase has-text-morado">
+                                    {Intl.NumberFormat('es-CO', {style: 'currency', currency: 'COP', minimumFractionDigits: 0}).format(product.precio)}
+                                </p>
+                                <hr />
+                                <p className="content">
+                                    {product.descripcion}
+                                </p>
+                                <div className="columns">
+                                    <div className="column is-half">
+                                        <div className="field has-addons">
+                                            <div className="control">
+                                                <button className="button is-danger is-light" disabled={!cantidad ? 'disabled' : null } onClick={quitarCantidad}>-</button>
                                             </div>
-                                            <div className="column is-half has-text-right">
-                                                <div className="field">
-                                                    <div className="control">
-                                                        <button onClick={handleClickAgregar} id="agregarCarrito" className="button is-primary">Agregar al carrito</button>
-                                                    </div>
-                                                </div>
+                                            <div className="control">
+                                                <input className="input is-light has-text-centered is-narrow" type="number" value={cantidad} readOnly/>
+                                            </div>
+                                            <div className="control">
+                                                <button className="button is-success is-light" onClick={() => cambiarCantidad(cantidad + 1)}>+</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div className="column is-half has-text-right">
+                                        <div className="field">
+                                            <div className="control">
+                                                <button onClick={handleClickAgregar} id="agregarCarrito" className="button is-primary">Agregar al carrito</button>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                            ))
-                        }
+                            </div>
+                        </div>
                     </div> :
                     <div className="container">
                         <div className="columns pb-6 px-5 is-rounded is-centered">

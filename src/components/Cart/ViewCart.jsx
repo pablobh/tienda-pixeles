@@ -1,8 +1,12 @@
 import { Link } from 'react-router-dom';
 import CartItem from './CartItem';
+import { useContext } from 'react';
+import { Store } from './../../contexts/Store'
 
 
 const ViewCart = () => {
+    const [data, setData] = useContext(Store);
+
     return (
         <section className="section is-medium" id="cart">
             <div className="container">
@@ -32,31 +36,16 @@ const ViewCart = () => {
                                     </tr>
                                 </thead>
                                 <tbody>
-                                <CartItem
-                                    categoriaBonitaProducto = "Branding"
-                                    nombreProducto = "Paquete Mediano"
-                                    precioProducto = {Intl.NumberFormat('es-CO', {style: 'currency', currency: 'COP', minimumFractionDigits: 0}).format(1350000)}
-                                />
-                                <CartItem
-                                    categoriaBonitaProducto = "Fotografía"
-                                    nombreProducto = "Fotografía por día"
-                                    precioProducto = {Intl.NumberFormat('es-CO', {style: 'currency', currency: 'COP', minimumFractionDigits: 0}).format(850000)}
-                                />
-                                <CartItem
-                                    categoriaBonitaProducto = "Social Media"
-                                    nombreProducto = "Paquete Completo"
-                                    precioProducto = {Intl.NumberFormat('es-CO', {style: 'currency', currency: 'COP', minimumFractionDigits: 0}).format(1300000)}
-                                />
-                                <CartItem
-                                    categoriaBonitaProducto = "Branding"
-                                    nombreProducto = "Paquete Mediano"
-                                    precioProducto = {Intl.NumberFormat('es-CO', {style: 'currency', currency: 'COP', minimumFractionDigits: 0}).format(850000)}
-                                />
-                                <CartItem
-                                    categoriaBonitaProducto = "Branding"
-                                    nombreProducto = "Paquete Mediano"
-                                    precioProducto = {Intl.NumberFormat('es-CO', {style: 'currency', currency: 'COP', minimumFractionDigits: 0}).format(850000)}
-                                />
+                                    {
+                                        data.items.map(item =>
+                                            <CartItem
+                                                categoriaBonitaProducto = {item.categoriaBonita}
+                                                nombreProducto = {item.nombre}
+                                                precioProducto = {Intl.NumberFormat('es-CO', {style: 'currency', currency: 'COP', minimumFractionDigits: 0}).format(item.precio)}>
+                                            </CartItem>
+                                            
+                                        )
+                                    }
                                 </tbody>
                             </table>
                         </div>
