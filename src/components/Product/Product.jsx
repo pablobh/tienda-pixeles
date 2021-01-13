@@ -1,16 +1,23 @@
 import { FiAlertOctagon } from 'react-icons/fi';
 import { useParams } from "react-router-dom";
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import { useHistory } from 'react-router-dom';
 import { getFirestore } from "./../../firebase";
+import { Store } from './../../contexts/Store'
 
 const Product = (props) => {
     const {id} = useParams();
+    const [data, setData] = useContext(Store);
 
     /* Agregar al carrito */
     let historialRutas = useHistory();
     const handleClickAgregar = (e) => {
-        alert(`Agregando al carrito el producto con ID ${id}`);
+        setData({
+            ...data, 
+            cantidad: data.cantidad + cantidad,
+            items: [...data.items, product],
+        });
+        // alert(`Agregando al carrito el producto con ID ${id}`);
         historialRutas.push("/carrito");
     }
 
