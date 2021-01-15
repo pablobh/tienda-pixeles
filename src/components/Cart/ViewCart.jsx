@@ -6,6 +6,7 @@ import { Store } from './../../contexts/Store'
 
 const ViewCart = () => {
     const [data, setData] = useContext(Store);
+    const valorTotal = 1500000;
 
     return (
         <section className="section is-medium" id="cart">
@@ -31,19 +32,21 @@ const ViewCart = () => {
                                         <th className="has-text-cremita">Categoría</th>
                                         <th className="has-text-cremita">Producto</th>
                                         <th className="has-text-cremita">Cantidad</th>
-                                        <th className="has-text-cremita">Precio</th>
-                                        <th className="has-text-cremita">Quitar</th>
+                                        <th className="has-text-cremita">Unidad</th>
+                                        <th className="has-text-cremita">Total</th>
+                                        <th className="has-text-cremita is-narrow">Quitar</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     {
                                         data.items.map(item =>
                                             <CartItem
-                                                categoriaBonitaProducto = {item.categoriaBonita}
-                                                nombreProducto = {item.nombre}
-                                                precioProducto = {Intl.NumberFormat('es-CO', {style: 'currency', currency: 'COP', minimumFractionDigits: 0}).format(item.precio)}>
+                                                categoriaBonitaProducto = {item.item.categoriaBonita}
+                                                nombreProducto = {item.item.nombre}
+                                                cantidadProducto = {item.cantidad}
+                                                precioProducto = {Intl.NumberFormat('es-CO', {style: 'currency', currency: 'COP', minimumFractionDigits: 0}).format(item.item.precio)}
+                                                precioProductoTotal = {Intl.NumberFormat('es-CO', {style: 'currency', currency: 'COP', minimumFractionDigits: 0}).format(item.item.precio * item.cantidad)}>
                                             </CartItem>
-                                            
                                         )
                                     }
                                 </tbody>
@@ -53,7 +56,8 @@ const ViewCart = () => {
 
                     <div className="columns has-background-space-black is-pulled-right">
                         <div className="column is-full">
-                            <h3 className="title is-4 has-text-cremita">Total: $6'500.000</h3>
+                            <h3 className="title is-4 has-text-cremita">
+                            Total: {Intl.NumberFormat('es-CO', {style: 'currency', currency: 'COP', minimumFractionDigits: 0}).format(valorTotal)}</h3>
                         </div>
                     </div>
 

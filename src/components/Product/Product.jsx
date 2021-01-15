@@ -6,27 +6,26 @@ import { getFirestore } from "./../../firebase";
 import { Store } from './../../contexts/Store'
 
 const Product = (props) => {
+    const historialRutas = useHistory();
     const {id} = useParams();
     const [data, setData] = useContext(Store);
+    const [cantidad, cambiarCantidad] = useState(0);
 
-    /* Agregar al carrito */
-    let historialRutas = useHistory();
-    const handleClickAgregar = (e) => {
+    const handleClickQuitar = () => {	
+        if(cantidad > 1) {	
+            cambiarCantidad(cantidad - 1);	
+        }	
+    }	
+
+    const alAgregar = () => {
         setData({
             ...data, 
             cantidad: data.cantidad + cantidad,
-            items: [...data.items, product],
+            items: [...data.items, {item: product, cantidad: cantidad}],
+            precioTotal: data.precioTotal + (product.precio * cantidad)
         });
         // alert(`Agregando al carrito el producto con ID ${id}`);
         historialRutas.push("/carrito");
-    }
-
-    /* Manejar las cantidades a agregar */
-    const [cantidad, cambiarCantidad] = useState(0);
-    function quitarCantidad() {
-        if (cantidad) {
-            cambiarCantidad(cantidad - 1);
-        }
     }
 
     /* Cargar desde Firebase los detalles del producto */
@@ -78,7 +77,7 @@ const Product = (props) => {
                                     <div className="column is-half">
                                         <div className="field has-addons">
                                             <div className="control">
-                                                <button className="button is-danger is-light" disabled={!cantidad ? 'disabled' : null } onClick={quitarCantidad}>-</button>
+                                                <button className="button is-danger is-light" disabled={cantidad === 1 ? 'disabled' : null } onClick={handleClickQuitar}>-</button>
                                             </div>
                                             <div className="control">
                                                 <input className="input is-light has-text-centered is-narrow" type="number" value={cantidad} readOnly/>
@@ -91,7 +90,7 @@ const Product = (props) => {
                                     <div className="column is-half has-text-right">
                                         <div className="field">
                                             <div className="control">
-                                                <button onClick={handleClickAgregar} id="agregarCarrito" className="button is-primary">Agregar al carrito</button>
+                                                <button onClick={alAgregar} id="agregarCarrito" className="button is-primary">Agregar al carrito</button>
                                             </div>
                                         </div>
                                     </div>
