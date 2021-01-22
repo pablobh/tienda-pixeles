@@ -9,24 +9,7 @@ const Product = (props) => {
     const historialRutas = useHistory();
     const {id} = useParams();
     const [data, setData] = useContext(Store);
-    const [cantidad, cambiarCantidad] = useState(0);
-
-    const handleClickQuitar = () => {	
-        if(cantidad > 1) {	
-            cambiarCantidad(cantidad - 1);	
-        }	
-    }	
-
-    const alAgregar = () => {
-        setData({
-            ...data, 
-            cantidad: data.cantidad + cantidad,
-            items: [...data.items, {item: product, cantidad: cantidad}],
-            precioTotal: data.precioTotal + (product.precio * cantidad)
-        });
-        // alert(`Agregando al carrito el producto con ID ${id}`);
-        historialRutas.push("/carrito");
-    }
+    const [cantidad, cambiarCantidad] = useState(1);
 
     /* Cargar desde Firebase los detalles del producto */
     const [product, setProduct] = useState(null);
@@ -36,7 +19,7 @@ const Product = (props) => {
         db.collection('productos').doc(id).get()
         .then(doc => {
             if (doc.exists) {
-                setProduct(doc.data());
+                setProduct([doc.data()]);
             }
         })
         .catch(e => console.log(e));
@@ -47,6 +30,30 @@ const Product = (props) => {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
+    const handleClickQuitar = () => {	
+        if(cantidad > 1) {	
+            cambiarCantidad(cantidad - 1);	
+        }	
+    }	
+
+    const alAgregar = (id) => {
+        const productoAFiltrar = product.filter(item => item.id === id)[0]
+        if(data.items[data.items.findIndex(item => item.id === id)]) {
+            data.items[data.items.findIndex(item => item.id === id)].cantidad += cantidad
+            setData({...data})            
+            historialRutas.push("/carrito");
+        } else {
+            productoAFiltrar.cantidad = cantidad
+            setData({
+                ...data, 
+                cantidad: data.cantidad + cantidad,
+                items: [...data.items, productoAFiltrar],
+                precioTotal: data.precioTotal + (product.precio * cantidad)
+            });
+            historialRutas.push("/carrito");
+        }
+    }
+
     return (
         id ?
         <section className="section">
@@ -56,22 +63,22 @@ const Product = (props) => {
                         <div className="columns pt-3 pb-6 px-4 has-background-white">
                             <div className="column is-6">
                                 <figure className="image is-square has-shadow">
-                                    <img src={product.foto} alt="Foto gigante del producto" />
+                                    <img src={product[0].foto} alt="Foto gigante del producto" />
                                 </figure>
                             </div>
                             <div className="column is-6">
                                 <h1 className="title is-2 has-text-primary">
-                                    {product.nombre}
+                                    {product[0].nombre}
                                 </h1>
                                 <p className="subtitle is-5 is-uppercase has-text-grey-light ">
-                                    {product.categoriaBonita} / SKU: {product.id}
+                                    {product[0].categoriaBonita} / SKU: {product[0].id}
                                 </p>
                                 <p className="is-size-3 is-uppercase has-text-morado">
-                                    {Intl.NumberFormat('es-CO', {style: 'currency', currency: 'COP', minimumFractionDigits: 0}).format(product.precio)}
+                                    {Intl.NumberFormat('es-CO', {style: 'currency', currency: 'COP', minimumFractionDigits: 0}).format(product[0].precio)}
                                 </p>
                                 <hr />
                                 <p className="content">
-                                    {product.descripcion}
+                                    {product[0].descripcion}
                                 </p>
                                 <div className="columns">
                                     <div className="column is-half">
@@ -90,7 +97,7 @@ const Product = (props) => {
                                     <div className="column is-half has-text-right">
                                         <div className="field">
                                             <div className="control">
-                                                <button onClick={alAgregar} id="agregarCarrito" className="button is-primary">Agregar al carrito</button>
+                                                <button onClick={() => alAgregar(product[0].id)} id="agregarCarrito" className="button is-primary">Agregar al carrito</button>
                                             </div>
                                         </div>
                                     </div>

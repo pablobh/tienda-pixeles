@@ -24,7 +24,7 @@ const Category = () => {
     useEffect(() => {
         getProductsFromDB();
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [])
+    }, [nombre_categoria])
     
     // const categoria = nombre_categoria;
     const nombre_categoria_espacios = nombre_categoria.replace("-", " ");

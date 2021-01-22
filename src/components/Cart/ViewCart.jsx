@@ -43,11 +43,11 @@ const ViewCart = () => {
                                                     {
                                                         data.items.map(item =>
                                                             <CartItem
-                                                                categoriaBonitaProducto = {item.item.categoriaBonita}
-                                                                nombreProducto = {item.item.nombre}
-                                                                cantidadProducto = {item.cantidad}
-                                                                precioProducto = {Intl.NumberFormat('es-CO', {style: 'currency', currency: 'COP', minimumFractionDigits: 0}).format(item.item.precio)}
-                                                                precioProductoTotal = {Intl.NumberFormat('es-CO', {style: 'currency', currency: 'COP', minimumFractionDigits: 0}).format(item.item.precio * item.cantidad)}>
+                                                                categoriaBonitaProducto = {item?.categoriaBonita}
+                                                                nombreProducto = {item?.nombre}
+                                                                cantidadProducto = {item?.cantidad}
+                                                                precioProducto = {Intl.NumberFormat('es-CO', {style: 'currency', currency: 'COP', minimumFractionDigits: 0}).format(item?.precio)}
+                                                                precioProductoTotal = {Intl.NumberFormat('es-CO', {style: 'currency', currency: 'COP', minimumFractionDigits: 0}).format(item?.precio * item?.cantidad)}>
                                                             </CartItem>
                                                         )
                                                     }
@@ -56,15 +56,22 @@ const ViewCart = () => {
                                     </div>
                                 </div>
 
-                                <div className="columns has-background-space-black is-pulled-right">
-                                    <div className="column is-full">
+                                <div className="columns has-background-space-black mx-1">
+                                    <div className="column is-full has-text-right">
                                         <h3 className="title is-4 has-text-cremita">
                                         Total: {Intl.NumberFormat('es-CO', {style: 'currency', currency: 'COP', minimumFractionDigits: 0}).format(valorTotal)}</h3>
                                     </div>
                                 </div>
+
+                                <div className="columns mt-6 ">
+                                    <div className="column is-full has-text-centered">
+                                        <Link to="" className="button is-info is-large has-text-weight-bold" onClick="irCheckout()">Hacer pedido</Link>
+                                    </div>
+                                </div>
+
                             </> :
                             <div className="columns">
-                                <div className="column is-6 is-offset-4">
+                                <div className="column is-full has-text-centered">
                                     <h1 className="title is-2 has-text-morado">Tu carrito está vacío</h1>
                                     <Link to="/" className="button is-primary has-text-weight-bold">Agregar Productos</Link>
                                 </div>
