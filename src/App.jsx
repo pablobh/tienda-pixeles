@@ -9,6 +9,7 @@ import Category from "./components/Category/Category";
 import Product from "./components/Product/Product";
 import RegularProducts from "./components/Product/RegularProducts";
 import ViewCart from "./components/Cart/ViewCart";
+import Checkout from "./components/Checkout/Checkout";
 import { Store } from "./contexts/Store";
 
 function App() {
@@ -50,6 +51,10 @@ function App() {
 
 					<Route path="/carrito">
 						<ViewCart />
+					</Route>
+
+					<Route path="/checkout">
+						<Checkout />
 					</Route>
 
 					<Route path="/categoria/:nombre_categoria?">

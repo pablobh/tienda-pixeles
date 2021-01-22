@@ -65,7 +65,7 @@ const ViewCart = () => {
 
                                 <div className="columns mt-6 ">
                                     <div className="column is-full has-text-centered">
-                                        <Link to="" className="button is-info is-large has-text-weight-bold" onClick="irCheckout()">Hacer pedido</Link>
+                                        <Link to="/checkout" className="button is-info is-large has-text-weight-bold">Hacer pedido</Link>
                                     </div>
                                 </div>
 
