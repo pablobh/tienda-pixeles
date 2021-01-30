@@ -4,10 +4,15 @@ import { useContext } from 'react';
 import { Store } from './../../contexts/Store'
 
 
+
 const ViewCart = () => {
     const [data, setData] = useContext(Store);
-    const valorTotal = 1500000;
-
+    const remove = (id) => {
+        console.log(id);
+        data.items.splice(data.items.findIndex(item => item.id === id), 1)
+        setData({...data}) 
+        console.log(data);  
+      };
     return (
         <section className="section is-medium" id="cart">
             <div className="container">
@@ -41,15 +46,18 @@ const ViewCart = () => {
                                             </thead>
                                             <tbody>
                                                     {
-                                                        data.items.map(item =>
+                                                        data.items.map((item, index) => {
+                                                            return (
                                                             <CartItem
                                                                 categoriaBonitaProducto = {item?.categoriaBonita}
                                                                 nombreProducto = {item?.nombre}
                                                                 cantidadProducto = {item?.cantidad}
                                                                 precioProducto = {Intl.NumberFormat('es-CO', {style: 'currency', currency: 'COP', minimumFractionDigits: 0}).format(item?.precio)}
-                                                                precioProductoTotal = {Intl.NumberFormat('es-CO', {style: 'currency', currency: 'COP', minimumFractionDigits: 0}).format(item?.precio * item?.cantidad)}>
+                                                                precioProductoTotal = {Intl.NumberFormat('es-CO', {style: 'currency', currency: 'COP', minimumFractionDigits: 0}).format(item?.precio * item?.cantidad)}
+                                                                eventRemove = {() => remove(item?.id)}>
                                                             </CartItem>
-                                                        )
+                                                            );
+                                                            })
                                                     }
                                             </tbody>
                                         </table>
@@ -59,7 +67,7 @@ const ViewCart = () => {
                                 <div className="columns has-background-space-black mx-1">
                                     <div className="column is-full has-text-right">
                                         <h3 className="title is-4 has-text-cremita">
-                                        Total: {Intl.NumberFormat('es-CO', {style: 'currency', currency: 'COP', minimumFractionDigits: 0}).format(valorTotal)}</h3>
+                                        Total: {Intl.NumberFormat('es-CO', {style: 'currency', currency: 'COP', minimumFractionDigits: 0}).format(data.precioTotal)}</h3>
                                     </div>
                                 </div>
 

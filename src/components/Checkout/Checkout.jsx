@@ -35,6 +35,11 @@ const Checkout = () => {
         .then(({id}) => {
             ventaCerrada(true);
             setIdCompra(id);
+            setData({
+                items: [],
+                cantidad: 0,
+                precioTotal: 0,
+            })
         })
         .catch(e => console.log(e));
     }
@@ -54,7 +59,7 @@ const Checkout = () => {
                                         <div className="field">
                                             <label className="label">Nombre</label>
                                             <div className="control">
-                                                <input className="input" type="text" value={datosFormulario.nombre} onChange={handleChangeInput} name="nombre" placeholder="Nombres" />
+                                                <input className="input" type="text" value={datosFormulario.nombre} onChange={handleChangeInput} name="nombre" placeholder="Nombres" required />
                                             </div>
                                         </div>
                                     </div>
@@ -62,7 +67,7 @@ const Checkout = () => {
                                         <div className="field">
                                             <label className="label">Apellidos</label>
                                             <div className="control">
-                                                <input className="input" type="text" value={datosFormulario.apellido} onChange={handleChangeInput} name="apellido" placeholder="Apellidos" />
+                                                <input className="input" type="text" value={datosFormulario.apellido} onChange={handleChangeInput} name="apellido" placeholder="Apellidos" required />
                                             </div>
                                         </div>
                                     </div>
@@ -73,7 +78,7 @@ const Checkout = () => {
                                         <div className="field">
                                             <label className="label">Correo electrónico</label>
                                             <div className="control has-icons-left">
-                                                <input className="input" type="text" value={datosFormulario.correo} onChange={handleChangeInput} name="correo" placeholder="Correo electrónico" />
+                                                <input className="input" type="text" value={datosFormulario.correo} onChange={handleChangeInput} name="correo" placeholder="Correo electrónico" required />
                                                 <span className="icon is-small is-left">
                                                     <FaRegEnvelope />
                                                 </span>
@@ -84,7 +89,7 @@ const Checkout = () => {
                                         <div className="field">
                                             <label className="label">Teléfono</label>
                                             <div className="control">
-                                                <input className="input" type="tel" value={datosFormulario.telefono} onChange={handleChangeInput} name="telefono" placeholder="Teléfono" />
+                                                <input className="input" type="tel" value={datosFormulario.telefono} onChange={handleChangeInput} name="telefono" placeholder="Teléfono" required />
                                             </div>
                                         </div>
                                     </div>
@@ -97,7 +102,15 @@ const Checkout = () => {
                         </div>
                         <div className="column is-3"></div>
                     </div> :
-                    <p>La compra se realizó correctamente, tu número de seguimiento es: {idCompra}</p>
+                    <div className="columns">
+                        <div className="column is-3"></div>
+                        <div className="column is-half content">
+                            <h1 className="title has-text-morado">Gracias por tu compra</h1>
+                            <p>Tu compra ha sido registrada de manera exitosa en nuestro sistema.</p>
+                            <p>tu número de seguimiento es: <span className="has-text-weight-bold">{idCompra}</span></p>
+                        </div>
+                        <div className="column is-3"></div>
+                    </div>
                 }
             </div>
         </section>

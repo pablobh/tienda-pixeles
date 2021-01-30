@@ -19,7 +19,7 @@ const Product = (props) => {
         db.collection('productos').doc(id).get()
         .then(doc => {
             if (doc.exists) {
-                setProduct([doc.data()]);
+                setProduct(doc.data());
             }
         })
         .catch(e => console.log(e));
@@ -37,13 +37,32 @@ const Product = (props) => {
     }	
 
     const alAgregar = (id) => {
-        const productoAFiltrar = product.filter(item => item.id === id)[0]
+        console.log(product);
         if(data.items[data.items.findIndex(item => item.id === id)]) {
             data.items[data.items.findIndex(item => item.id === id)].cantidad += cantidad
+            data.precioTotal += (product.precio * cantidad)
+            setData({...data})            
+            historialRutas.push("/carrito");
+        } else {
+            product.cantidad = cantidad
+            console.log(product);
+            setData({
+                ...data, 
+                cantidad: data.cantidad + cantidad,
+                items: [...data.items, product],
+                precioTotal: data.precioTotal + (product.precio * cantidad)
+            });
+            historialRutas.push("/carrito");
+        }
+        /* const productoAFiltrar = product.filter(item => item.id === id)
+        if(data.items[data.items.findIndex(item => item.id === id)]) {
+            data.items[data.items.findIndex(item => item.id === id)].cantidad += cantidad
+            data.precioTotal += (product.precio * cantidad)
             setData({...data})            
             historialRutas.push("/carrito");
         } else {
             productoAFiltrar.cantidad = cantidad
+            console.log(product);
             setData({
                 ...data, 
                 cantidad: data.cantidad + cantidad,
@@ -51,7 +70,7 @@ const Product = (props) => {
                 precioTotal: data.precioTotal + (product.precio * cantidad)
             });
             historialRutas.push("/carrito");
-        }
+        } */
     }
 
     return (
@@ -63,22 +82,22 @@ const Product = (props) => {
                         <div className="columns pt-3 pb-6 px-4 has-background-white">
                             <div className="column is-6">
                                 <figure className="image is-square has-shadow">
-                                    <img src={product[0].foto} alt="Foto gigante del producto" />
+                                    <img src={product.foto} alt="Foto gigante del producto" />
                                 </figure>
                             </div>
                             <div className="column is-6">
                                 <h1 className="title is-2 has-text-primary">
-                                    {product[0].nombre}
+                                    {product.nombre}
                                 </h1>
                                 <p className="subtitle is-5 is-uppercase has-text-grey-light ">
-                                    {product[0].categoriaBonita} / SKU: {product[0].id}
+                                    {product.categoriaBonita} / SKU: {product.id}
                                 </p>
                                 <p className="is-size-3 is-uppercase has-text-morado">
-                                    {Intl.NumberFormat('es-CO', {style: 'currency', currency: 'COP', minimumFractionDigits: 0}).format(product[0].precio)}
+                                    {Intl.NumberFormat('es-CO', {style: 'currency', currency: 'COP', minimumFractionDigits: 0}).format(product.precio)}
                                 </p>
                                 <hr />
                                 <p className="content">
-                                    {product[0].descripcion}
+                                    {product.descripcion}
                                 </p>
                                 <div className="columns">
                                     <div className="column is-half">
@@ -97,7 +116,7 @@ const Product = (props) => {
                                     <div className="column is-half has-text-right">
                                         <div className="field">
                                             <div className="control">
-                                                <button onClick={() => alAgregar(product[0].id)} id="agregarCarrito" className="button is-primary">Agregar al carrito</button>
+                                                <button onClick={() => alAgregar(product.id)} id="agregarCarrito" className="button is-primary">Agregar al carrito</button>
                                             </div>
                                         </div>
                                     </div>

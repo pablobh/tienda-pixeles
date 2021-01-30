@@ -1,4 +1,4 @@
-const CartItem = (props) => {
+const PedidoItem = (props) => {
     return (
         <tr>
             <td>{props.categoriaBonitaProducto}</td>
@@ -6,9 +6,8 @@ const CartItem = (props) => {
             <td>{props.cantidadProducto}</td>
             <td>{props.precioProducto}</td>
             <td>{props.precioProductoTotal}</td>
-            <td><button className="delete is-danger" onClick={props.eventRemove}>X</button></td>
         </tr>
     )
 }
 
-export default CartItem;
+export default PedidoItem;
