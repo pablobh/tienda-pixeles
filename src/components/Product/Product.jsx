@@ -3,7 +3,9 @@ import { useParams } from "react-router-dom";
 import { useState, useEffect, useContext } from 'react';
 import { useHistory } from 'react-router-dom';
 import { getFirestore } from "./../../firebase";
-import { Store } from './../../contexts/Store'
+import { Store } from './../../contexts/Store';
+import Error from './../global/Error';
+import Spinner from './../global/Spinner';
 
 const Product = (props) => {
     const historialRutas = useHistory();
@@ -124,33 +126,18 @@ const Product = (props) => {
                             </div>
                         </div>
                     </div> :
-                    <div className="container">
-                        <div className="columns pb-6 px-5 is-rounded is-centered">
-                            <div className="column is-1 has-background-danger has-text-centered has-text-white">
-                                <p className="is-size-1 pt-2"><FiAlertOctagon /></p>
-                            </div>
-                            <div className="column is-5 has-background-danger-light">
-                                <p className="subtitle is-4 has-text-naranja">¡ERROR!</p>
-                                <h1 className="title is-2 is-error">Producto no encontrado</h1>
-                            </div>
-                        </div>
-                    </div>
-            }
-        </section> :
-        <section className="section is-medium">
-            <div className="container">
-                <div className="columns pb-6 px-5 is-rounded is-centered">
-                    <div className="column is-1 has-background-danger has-text-centered has-text-white">
-                        <p className="is-size-1 pt-2"><FiAlertOctagon /></p>
-                    </div>
-                    <div className="column is-5 has-background-danger-light">
-                        <p className="subtitle is-4 has-text-naranja">¡ERROR!</p>
-                        <h1 className="title is-2 is-error">Falta ID de producto</h1>
-                    </div>
-                </div>
-            </div>
-        </section>
-    );
+                    <section className="section">
+                        <Spinner />
+                    </section>
+
+                    }
+                </section> :
+                <section className="section">
+                    <Error 
+                        titulo = "¡Error!"
+                        mensaje = "Falta ID de producto" />
+                </section>
+                );
 }
 
 export default Product;
