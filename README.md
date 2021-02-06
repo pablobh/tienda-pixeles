@@ -1,5 +1,11 @@
-# Getting Started with Create React App
+# Tienda Pixeles
 
+Sitio de eCommerce creado con `create-react-app` para el curso de ReactJS de Coder House.
+
+Herramientas/tecnologías utilizadas:
+- React 17.0.1
+- Bulma 0.9.1
+- React Router 5.2.0
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
