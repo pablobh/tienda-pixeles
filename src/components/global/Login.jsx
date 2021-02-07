@@ -6,7 +6,7 @@ function Login() {
       <div className="buttons">
         <Link
           to={{
-            pathname: "/cuenta",
+            pathname: "/mi-pedido",
           }}
           className="button is-primary"
         >

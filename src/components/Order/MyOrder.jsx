@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { getFirestore } from "../../firebase";
-import firebase from "firebase/app";
-import PedidoItem from "./PedidoItem";
+import PedidoItem from "./OrderItem";
 
-const CartWidget = (props) => {
+const MyOrder = (props) => {
   const db = getFirestore();
   const [referencia, setReferencia] = useState("");
   const [pedido, setPedidos] = useState({});
@@ -136,4 +135,4 @@ const CartWidget = (props) => {
   );
 };
 
-export default CartWidget;
+export default MyOrder;

@@ -1,6 +1,7 @@
 import "./styles/App.scss";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import { useState } from "react";
+import { Store } from "./contexts/Store";
 import Navbar from "./components/global/Navbar";
 import Hero from "./components/Home/Hero";
 import FeaturedProducts from "./components/Product/FeaturedProducts";
@@ -9,9 +10,8 @@ import Category from "./components/Category/Category";
 import Product from "./components/Product/Product";
 import RegularProducts from "./components/Product/RegularProducts";
 import ViewCart from "./components/Cart/ViewCart";
-import ViewAccount from "./components/Account/Account";
+import MyOrder from "./components/Order/MyOrder";
 import Checkout from "./components/Checkout/Checkout";
-import { Store } from "./contexts/Store";
 import Breadcrumb from "./components/global/Breadcrumb";
 import Error from "./components/global/Error";
 
@@ -58,7 +58,7 @@ function App() {
           </Route>
 
           <Route path="/mi-pedido">
-            <ViewAccount />
+            <MyOrder />
           </Route>
 
           <Route path="/checkout">

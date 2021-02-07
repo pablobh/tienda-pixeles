@@ -40,7 +40,7 @@ const FeaturedProducts = () => {
                                     categoriaProducto = {item.data.categoria}
                                     categoriaBonitaProducto = {item.data.categoriaBonita}
                                     precioProducto = {Intl.NumberFormat('es-CO', {style: 'currency', currency: 'COP', minimumFractionDigits: 0}).format(item.data.precio)}
-                                    cantidadColumnas = {4}
+                                    cantidadColumnas = {3}
                                 />
                             ))
                         }

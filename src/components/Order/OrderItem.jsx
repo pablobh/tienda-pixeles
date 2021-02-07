@@ -1,4 +1,4 @@
-const PedidoItem = (props) => {
+const OrderItem = (props) => {
     return (
         <tr>
             <td>{props.categoriaBonitaProducto}</td>
@@ -10,4 +10,4 @@ const PedidoItem = (props) => {
     )
 }
 
-export default PedidoItem;
+export default OrderItem;
