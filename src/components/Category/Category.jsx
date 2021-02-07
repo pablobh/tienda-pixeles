@@ -4,6 +4,7 @@ import { getFirestore } from "./../../firebase";
 import ProductCard from "../Product/ProductCard";
 import Spinner from "../global/Spinner";
 import Error from "../global/Error";
+import Breadcrumb from "../global/Breadcrumb"
 
 const Category = () => {
     const {nombre_categoria} = useParams();
@@ -32,6 +33,8 @@ const Category = () => {
     return (
         items ?
         <>
+            <Breadcrumb
+                categoria = {nombre_categoria_espacios} />
             {
                 items.length ?
                     <section className="section">

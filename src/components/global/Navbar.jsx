@@ -98,6 +98,9 @@ function Navbar() {
                                                 />
                                             );
                                         })}
+                                        <div className="navbar-item pt-5">
+                                            <button className="button is-small is-fullwidth is-primary has-text-weight-bold">Ir al carrito</button>
+                                        </div>
                                     </div>
                                 ) : (
                                     ""

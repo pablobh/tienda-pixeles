@@ -26,7 +26,6 @@ function App() {
     <Store.Provider value={[data, setData]}>
       <BrowserRouter>
         <Navbar />
-        <Breadcrumb />
         <Switch>
           <Route exact path="/">
             <Hero
@@ -50,10 +49,12 @@ function App() {
           </Route>
 
           <Route path="/producto/:id?">
+            <Breadcrumb />
             <Product />
           </Route>
 
           <Route path="/carrito">
+            <Breadcrumb />
             <ViewCart />
           </Route>
 

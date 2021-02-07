@@ -105,6 +105,7 @@ const Checkout = () => {
         user: datosFormulario,
         items: data.items,
         precioTotal: data.precioTotal,
+        estado: "generada",
         date: firebase.firestore.Timestamp.fromDate(new Date()),
     };
 

@@ -1,8 +1,11 @@
 function ItemListContainer(props) {
     return (
-        <a className="navbar-item" href="index.html">
+        <div className="navbar-item p-3">
             {props.nombreProducto}
-        </a>
+                <span className="tag is-grey ml-3">
+                    {props.cantidad}
+                </span>
+        </div>
     );
 }
 
