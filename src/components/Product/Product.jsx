@@ -1,4 +1,3 @@
-import { FiAlertOctagon } from 'react-icons/fi';
 import { useParams } from "react-router-dom";
 import { useState, useEffect, useContext } from 'react';
 import { useHistory } from 'react-router-dom';
@@ -56,23 +55,6 @@ const Product = (props) => {
             });
             historialRutas.push("/carrito");
         }
-        /* const productoAFiltrar = product.filter(item => item.id === id)
-        if(data.items[data.items.findIndex(item => item.id === id)]) {
-            data.items[data.items.findIndex(item => item.id === id)].cantidad += cantidad
-            data.precioTotal += (product.precio * cantidad)
-            setData({...data})            
-            historialRutas.push("/carrito");
-        } else {
-            productoAFiltrar.cantidad = cantidad
-            console.log(product);
-            setData({
-                ...data, 
-                cantidad: data.cantidad + cantidad,
-                items: [...data.items, productoAFiltrar],
-                precioTotal: data.precioTotal + (product.precio * cantidad)
-            });
-            historialRutas.push("/carrito");
-        } */
     }
 
     return (
@@ -126,17 +108,12 @@ const Product = (props) => {
                             </div>
                         </div>
                     </div> :
-                    <section className="section">
                         <Spinner />
-                    </section>
-
                     }
                 </section> :
-                <section className="section">
                     <Error 
                         titulo = "¡Error!"
                         mensaje = "Falta ID de producto" />
-                </section>
                 );
 }
 

@@ -12,6 +12,7 @@ import ViewCart from "./components/Cart/ViewCart";
 import ViewAccount from "./components/Account/Account";
 import Checkout from "./components/Checkout/Checkout";
 import { Store } from "./contexts/Store";
+import Breadcrumb from "./components/global/Breadcrumb";
 
 function App() {
   const [data, setData] = useState({
@@ -24,6 +25,7 @@ function App() {
     <Store.Provider value={[data, setData]}>
       <BrowserRouter>
         <Navbar />
+        <Breadcrumb />
         <Switch>
           <Route exact path="/">
             <Hero
