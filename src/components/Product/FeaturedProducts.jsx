@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import Spinner from '../global/Spinner';
 import { getFirestore } from "./../../firebase";
 import ProductCard from "./ProductCard";
 
@@ -44,7 +45,7 @@ const FeaturedProducts = () => {
                             ))
                         }
                     </> :
-                <p>Cargando...</p>
+                <Spinner />
             }
         </div>
     )

@@ -13,6 +13,7 @@ import ViewAccount from "./components/Account/Account";
 import Checkout from "./components/Checkout/Checkout";
 import { Store } from "./contexts/Store";
 import Breadcrumb from "./components/global/Breadcrumb";
+import Error from "./components/global/Error";
 
 function App() {
   const [data, setData] = useState({
@@ -56,7 +57,7 @@ function App() {
             <ViewCart />
           </Route>
 
-          <Route path="/cuenta">
+          <Route path="/mi-pedido">
             <ViewAccount />
           </Route>
 
@@ -69,7 +70,10 @@ function App() {
           </Route>
 
           <Route path="*">
-            <p>Error 404</p>
+            <Error
+              titulo = "¡Error 404!"
+              mensaje = "Contenido no existe"
+            />
           </Route>
         </Switch>
         <Footer />

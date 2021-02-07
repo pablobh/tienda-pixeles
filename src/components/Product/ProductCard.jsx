@@ -14,13 +14,13 @@ const ProductCard = (props) => {
                 </div>
                 <div className="card-content">
                     <div className="content">
-                        <p className="has-text-grey is-uppercase is-size-6 mb-0">{props.categoriaBonitaProducto}</p>
-                        <h5 className="has-text-primary is-size-4">{props.nombreProducto}</h5>
-                        <p className="has-text-weight-normal is-size-3 has-text-grey-dark has-text-centered my-2">
+                        <p className="has-text-grey is-uppercase is-size-7 mb-0">{props.categoriaBonitaProducto}</p>
+                        <h5 className="has-text-morado has-text-weight-normal is-size-5">{props.nombreProducto}</h5>
+                        <p className="has-text-weight-bold is-size-5 has-text-grey-dark mt-4">
                             {props.precioProducto}
                         </p>
                         <div className="field is-grouped is-grouped-centered">
-                            <Link to={`/producto/${props.idProducto}`} className="button is-info mr-2">Ver detalles</Link>
+                            <Link to={`/producto/${props.idProducto}`} className="button is-primary mr-2 is-fullwidth is-radiusless is-outlined">Ver detalles</Link>
                         </div>
                     </div>
                 </div>

@@ -12,7 +12,7 @@ const ViewCart = () => {
         data.items.splice(data.items.findIndex(item => item.id === id), 1)
         setData({...data}) 
         console.log(data);  
-      };
+    };
     return (
         <section className="section is-medium" id="cart">
             <div className="container">

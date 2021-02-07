@@ -1,8 +1,9 @@
 import { useParams } from "react-router-dom";
 import { useState, useEffect } from 'react';
 import { getFirestore } from "./../../firebase";
-import { FiAlertOctagon } from 'react-icons/fi';
 import ProductCard from "../Product/ProductCard";
+import Spinner from "../global/Spinner";
+import Error from "../global/Error";
 
 const Category = () => {
     const {nombre_categoria} = useParams();
@@ -60,35 +61,14 @@ const Category = () => {
                             </div>
                         </div>
                     </section> :
-                    <section className="section is-medium">
-                        <div className="container">
-                            <div className="columns pb-6 px-5 is-rounded is-centered">
-                                <div className="column is-1 has-background-danger has-text-centered has-text-white">
-                                    <p className="is-size-1 pt-2"><FiAlertOctagon /></p>
-                                </div>
-                                <div className="column is-5 has-background-danger-light">
-                                    <p className="subtitle is-4 has-text-naranja">¡ERROR!</p>
-                                    <h1 className="title is-2 is-error">Categoría no válida</h1>
-                                </div>
-                            </div>
-                        </div>
-                    </section>
+                    <Spinner />
             }
             </> :
-            <section className="section is-medium">
-                <div className="container">
-                    <div className="columns pb-6 px-5 is-rounded is-centered">
-                        <div className="column is-1 has-background-danger has-text-centered has-text-white">
-                            <p className="is-size-1 pt-2"><FiAlertOctagon /></p>
-                        </div>
-                        <div className="column is-6 has-background-danger-light">
-                            <p className="subtitle is-4 has-text-naranja">¡ERROR!</p>
-                            <h1 className="title is-2 is-error">Es necesario tener una categoría</h1>
-                        </div>
-                    </div>
-                </div>
-            </section>
-    )
+            <Error
+                titulo = "¡ERROR!"
+                mensaje = "Es necesario tener una categoría"
+            />
+        )
 }
 
 export default Category;

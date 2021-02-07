@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import Spinner from '../global/Spinner';
 import { getFirestore } from "./../../firebase";
 import ProductCard from "./ProductCard";
 
@@ -38,12 +39,12 @@ const RegularProducts = () => {
                                     categoriaProducto = {item.data.categoria}
                                     categoriaBonitaProducto = {item.data.categoriaBonita}
                                     precioProducto = {Intl.NumberFormat('es-CO', {style: 'currency', currency: 'COP', minimumFractionDigits: 0}).format(item.data.precio)}
-                                    cantidadColumnas = {3}
+                                    cantidadColumnas = {'one-fifth'}
                                 />
                             ))
                         }
                     </> :
-                <p>Cargando...</p>
+                    <Spinner />
             }
         </div>
     )

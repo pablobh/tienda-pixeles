@@ -10,7 +10,7 @@ function Login() {
           }}
           className="button is-primary"
         >
-          <strong>Mi cuenta</strong>
+          <strong>Mi Pedido</strong>
         </Link>
       </div>
     </div>

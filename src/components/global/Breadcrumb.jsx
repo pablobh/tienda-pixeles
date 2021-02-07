@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 
 function Breadcrumb() {
     return (
-        <section className="section is-paddingless py-1 has-background-primary-light">
+        <section className="section p-1 has-background-primary-light">
             <div className="container">
                 <div className="columns">
                     <div className="column is-full">
