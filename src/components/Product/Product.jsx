@@ -7,6 +7,7 @@ import { plataBonita } from './../../models/Functions'
 import Error from './../global/Error';
 import Spinner from './../global/Spinner';
 import Button from './../global/Button';
+import Breadcrumb from "../global/Breadcrumb"
 import QuantitySelector from './../global/QuantitySelector'
 
 const Product = (props) => {
@@ -41,7 +42,6 @@ const Product = (props) => {
     }	
 
     const alAgregar = (id) => {
-        console.log(product);
         if(data.items[data.items.findIndex(item => item.id === id)]) {
             data.items[data.items.findIndex(item => item.id === id)].cantidad += cantidad
             data.precioTotal += (product.precio * cantidad)
@@ -49,7 +49,6 @@ const Product = (props) => {
             historialRutas.push("/carrito");
         } else {
             product.cantidad = cantidad
-            console.log(product);
             setData({
                 ...data, 
                 cantidad: data.cantidad + cantidad,
@@ -103,7 +102,7 @@ const Product = (props) => {
                     </div> :
                         <Spinner />
                     }
-                </section> :
+                </section>:
                     <Error 
                         titulo = "¡Error!"
                         mensaje = "Falta ID de producto" />

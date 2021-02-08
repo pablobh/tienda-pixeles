@@ -40,7 +40,8 @@ const Category = () => {
         items && nombre_categoria !== undefined ?
         <>
             <Breadcrumb
-                categoria = {nombre_categoria_espacios} />
+                categoria = {nombre_categoria}
+                categoriaBonita = {nombre_categoria_espacios} />
             {
                 items.length ?
                     <section className="section">
