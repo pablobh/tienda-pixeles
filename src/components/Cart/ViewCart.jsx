@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 import CartItem from './CartItem';
 import { useContext } from 'react';
 import { Store } from './../../contexts/Store'
-
+import { plataBonita  } from "../../models/Functions";
 
 
 const ViewCart = () => {
@@ -52,8 +52,8 @@ const ViewCart = () => {
                                                                 categoriaBonitaProducto = {item?.categoriaBonita}
                                                                 nombreProducto = {item?.nombre}
                                                                 cantidadProducto = {item?.cantidad}
-                                                                precioProducto = {Intl.NumberFormat('es-CO', {style: 'currency', currency: 'COP', minimumFractionDigits: 0}).format(item?.precio)}
-                                                                precioProductoTotal = {Intl.NumberFormat('es-CO', {style: 'currency', currency: 'COP', minimumFractionDigits: 0}).format(item?.precio * item?.cantidad)}
+                                                                precioProducto = {plataBonita(item?.precio)}
+                                                                precioProductoTotal = {plataBonita(item?.precio * item?.cantidad)}
                                                                 eventRemove = {() => remove(item?.id)}>
                                                             </CartItem>
                                                             );
@@ -67,7 +67,7 @@ const ViewCart = () => {
                                 <div className="columns has-background-space-black mx-1">
                                     <div className="column is-full has-text-right">
                                         <h3 className="title is-4 has-text-cremita">
-                                        Total: {Intl.NumberFormat('es-CO', {style: 'currency', currency: 'COP', minimumFractionDigits: 0}).format(data.precioTotal)}</h3>
+                                        Total: {plataBonita(data.precioTotal)}</h3>
                                     </div>
                                 </div>
 

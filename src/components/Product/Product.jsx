@@ -3,8 +3,11 @@ import { useState, useEffect, useContext } from 'react';
 import { useHistory } from 'react-router-dom';
 import { getFirestore } from "./../../firebase";
 import { Store } from './../../contexts/Store';
+import { plataBonita } from './../../models/Functions'
 import Error from './../global/Error';
 import Spinner from './../global/Spinner';
+import Button from './../global/Button';
+import QuantitySelector from './../global/QuantitySelector'
 
 const Product = (props) => {
     const historialRutas = useHistory();
@@ -77,7 +80,7 @@ const Product = (props) => {
                                     {product.categoriaBonita} / SKU: {product.id}
                                 </p>
                                 <p className="is-size-3 is-uppercase has-text-morado">
-                                    {Intl.NumberFormat('es-CO', {style: 'currency', currency: 'COP', minimumFractionDigits: 0}).format(product.precio)}
+                                    {plataBonita(product.precio)}
                                 </p>
                                 <hr />
                                 <p className="content">
@@ -85,22 +88,12 @@ const Product = (props) => {
                                 </p>
                                 <div className="columns">
                                     <div className="column is-half">
-                                        <div className="field has-addons">
-                                            <div className="control">
-                                                <button className="button is-danger is-light" disabled={cantidad === 1 ? 'disabled' : null } onClick={handleClickQuitar}>-</button>
-                                            </div>
-                                            <div className="control">
-                                                <input className="input is-light has-text-centered is-narrow" type="number" value={cantidad} readOnly/>
-                                            </div>
-                                            <div className="control">
-                                                <button className="button is-success is-light" onClick={() => cambiarCantidad(cantidad + 1)}>+</button>
-                                            </div>
-                                        </div>
+                                        <QuantitySelector restar={handleClickQuitar} sumar={() => cambiarCantidad(cantidad + 1)} cantidad={cantidad} />
                                     </div>
                                     <div className="column is-half has-text-right">
                                         <div className="field">
                                             <div className="control">
-                                                <button onClick={() => alAgregar(product.id)} id="agregarCarrito" className="button is-primary">Agregar al carrito</button>
+                                                <Button event={() => alAgregar(product.id)} id="agregarCarrito" className="button is-primary" title="Agregar al carrito" />
                                             </div>
                                         </div>
                                     </div>

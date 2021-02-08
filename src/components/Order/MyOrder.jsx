@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { getFirestore } from "../../firebase";
-import PedidoItem from "./OrderItem";
+import OrderItem from "./OrderItem";
+import { plataBonita  } from "../../models/Functions";
 
 const MyOrder = (props) => {
   const db = getFirestore();
@@ -88,21 +89,13 @@ const MyOrder = (props) => {
                     {
                       pedido.data.items.map((item, index) => {
                         return (
-                          <PedidoItem
+                          <OrderItem
                             categoriaBonitaProducto={item?.categoriaBonita}
                             nombreProducto={item?.nombre}
                             cantidadProducto={item?.cantidad}
-                            precioProducto={Intl.NumberFormat("es-CO", {
-                              style: "currency",
-                              currency: "COP",
-                              minimumFractionDigits: 0,
-                            }).format(item?.precio)}
-                            precioProductoTotal={Intl.NumberFormat("es-CO", {
-                              style: "currency",
-                              currency: "COP",
-                              minimumFractionDigits: 0,
-                            }).format(item?.precio * item?.cantidad)}>
-                          </PedidoItem>
+                            precioProducto={plataBonita(item?.precio)}
+                            precioProductoTotal={plataBonita(item?.precio * item?.cantidad)}>
+                          </OrderItem>
                         );
                       })}
                   </tbody>
@@ -119,11 +112,9 @@ const MyOrder = (props) => {
             <div className="column is-full has-text-right">
               <h3 className="title is-4 has-text-cremita">
                 Total:{" "}
-                {Intl.NumberFormat("es-CO", {
-                  style: "currency",
-                  currency: "COP",
-                  minimumFractionDigits: 0,
-                }).format(pedido.data.precioTotal)}
+                {
+                  plataBonita(pedido.data.precioTotal)
+                }
               </h3>
             </div>
           </div>

@@ -130,18 +130,21 @@ const Checkout = () => {
         <section className="section is-medium" id="cart">
             <div className="container">
                 {!venta ? (
-                    <div className="columns">
+                    <div className="columns content">
                         <div className="column is-3"></div>
                         <div className="column is-half">
                             <h1 className="title has-text-morado">
                                 Finaliza tu compra
                             </h1>
+                            <h3 className="has-text-naranja">
+                                Datos personales
+                            </h3>
                             <form onSubmit={handleSubmitForm}>
                                 <div className="columns">
                                     <div className="column is-half">
                                         <div className="field">
                                             <label className="label">
-                                                Nombre
+                                                Nombres
                                             </label>
                                             <div className="control">
                                                 <input
@@ -202,16 +205,16 @@ const Checkout = () => {
                                             {!valCorreo &&
                                             datosFormulario.correo !== "" ? (
                                                 <p class="help is-danger">
-                                                    El correo es invalido
+                                                    El correo es inválido
                                                 </p>
                                             ) : (
                                                 ""
                                             )}
                                             {valCorreo &&
                                             datosFormulario.correo !== "" ? (
-                                                <p class="help is-success">
-                                                    el correo es valido
-                                                </p>
+                                                <div className="help is-success has-text-weight-bold">
+                                                    🟢 Tu correo es válido
+                                                </div>
                                             ) : (
                                                 ""
                                             )}
@@ -220,46 +223,7 @@ const Checkout = () => {
                                     <div className="column is-half">
                                         <div className="field">
                                             <label className="label">
-                                                Teléfono
-                                            </label>
-                                            <div className="control">
-                                                <input
-                                                    className="input"
-                                                    type="number"
-                                                    value={
-                                                        datosFormulario.telefono
-                                                    }
-                                                    onChange={handleChangeInput}
-                                                    name="telefono"
-                                                    placeholder="Teléfono"
-                                                />
-                                            </div>
-                                            {!valTelefono &&
-                                            datosFormulario.telefono !== "" ? (
-                                                <p class="help is-danger">
-                                                    El telefono debe tener entre
-                                                    6 y 10 caracteres
-                                                </p>
-                                            ) : (
-                                                ""
-                                            )}
-                                            {valTelefono &&
-                                            datosFormulario.telefono !== "" ? (
-                                                <p class="help is-success">
-                                                    el telefono esta correcto
-                                                </p>
-                                            ) : (
-                                                ""
-                                            )}
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div className="columns">
-                                    <div className="column">
-                                        <div className="field">
-                                            <label className="label">
-                                                Confirmar Correo electrónico
+                                                Correo electrónico (Confirmación)
                                             </label>
                                             <div className="control has-icons-left">
                                                 {!valCorreo ? (
@@ -295,17 +259,55 @@ const Checkout = () => {
                                             {!valCorreoFirma &&
                                             datosFormulario.confirmar_correo !==
                                                 "" ? (
-                                                <p class="help is-danger">
-                                                    Los correos no coinciden
-                                                </p>
+                                                <div className="help is-danger has-text-weight-bold">
+                                                    🔴 Los correos no son iguales
+                                                </div>
                                             ) : (
                                                 ""
                                             )}
                                             {valCorreoFirma &&
                                             datosFormulario.confirmar_correo !==
                                                 "" ? (
-                                                <p class="help is-success">
-                                                    Los correos coinsiden
+                                                <div className="help is-success has-text-weight-bold">
+                                                    🟢 Los correos coinciden
+                                                </div>
+                                            ) : (
+                                                ""
+                                            )}
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div className="columns">
+                                    <div className="column is-half">
+                                        <div className="field">
+                                            <label className="label">
+                                                Teléfono
+                                            </label>
+                                            <div className="control">
+                                                <input
+                                                    className="input"
+                                                    type="number"
+                                                    value={
+                                                        datosFormulario.telefono
+                                                    }
+                                                    onChange={handleChangeInput}
+                                                    name="telefono"
+                                                    placeholder="Teléfono"
+                                                />
+                                            </div>
+                                            {!valTelefono &&
+                                            datosFormulario.telefono !== "" ? (
+                                                <p class="help is-danger has-text-weight-bold">
+                                                    🔴 El telefono debe tener entre 6 y 10 caracteres
+                                                </p>
+                                            ) : (
+                                                ""
+                                            )}
+                                            {valTelefono &&
+                                            datosFormulario.telefono !== "" ? (
+                                                <p class="help is-success has-text-weight-bold">
+                                                    🟢 El teléfono es correcto
                                                 </p>
                                             ) : (
                                                 ""
@@ -314,17 +316,26 @@ const Checkout = () => {
                                     </div>
                                 </div>
 
-                                {valNombre &&
-                                valApellido &&
-                                valTelefono &&
-                                valCorreo &&
-                                valCorreoFirma ? (
-                                    <button className="button is-primary is-large">
-                                        Pagar
-                                    </button>
-                                ) : (
-                                    ""
-                                )}
+                                <div className="columns mt-5">
+                                    <div className="column is-full">
+                                        <h3 className="has-text-naranja">
+                                            Forma de pago
+                                        </h3>
+                                    </div>
+                                </div>
+                                {
+                                    valNombre &&
+                                    valApellido &&
+                                    valTelefono &&
+                                    valCorreo &&
+                                    valCorreoFirma ? (
+                                        <button className="button is-success is-fullwidth has-text-weight-bold is-medium is-radiusless has-shadow">
+                                            Pagar
+                                        </button>
+                                    ) : (
+                                        ""
+                                    )
+                                }
                             </form>
                         </div>
                         <div className="column is-3"></div>

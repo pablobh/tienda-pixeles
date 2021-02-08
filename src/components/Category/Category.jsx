@@ -5,6 +5,7 @@ import ProductCard from "../Product/ProductCard";
 import Spinner from "../global/Spinner";
 import Error from "../global/Error";
 import Breadcrumb from "../global/Breadcrumb"
+import { plataBonita  } from "../../models/Functions";
 
 const Category = () => {
     const {nombre_categoria} = useParams();
@@ -12,15 +13,17 @@ const Category = () => {
     const db = getFirestore();
 
     const getProductsFromDB = () => {
-        db.collection('productos').where("categoria", "==", nombre_categoria).get()
-        .then(docs => {
-            let arr = [];
-            docs.forEach(doc => {
-                arr.push({id: doc.id, data:doc.data()})
+        if (nombre_categoria !== undefined) {
+            db.collection('productos').where("categoria", "==", nombre_categoria).get()
+            .then(docs => {
+                let arr = [];
+                docs.forEach(doc => {
+                    arr.push({id: doc.id, data:doc.data()})
+                })
+                setItems(arr);
             })
-            setItems(arr);
-        })
-        .catch(e => console.log(e));
+            .catch(e => console.log(e));
+        }
     }
 
     useEffect(() => {
@@ -29,9 +32,12 @@ const Category = () => {
     }, [nombre_categoria])
     
     // const categoria = nombre_categoria;
-    const nombre_categoria_espacios = nombre_categoria.replace("-", " ");
+    let nombre_categoria_espacios = ''
+    if (nombre_categoria !== undefined) {
+        nombre_categoria_espacios = nombre_categoria.replace("-", " ");
+    }
     return (
-        items ?
+        items && nombre_categoria !== undefined ?
         <>
             <Breadcrumb
                 categoria = {nombre_categoria_espacios} />
@@ -56,7 +62,7 @@ const Category = () => {
                                             nombreProducto = {item.data.nombre}
                                             categoriaProducto = {item.data.categoria}
                                             categoriaBonitaProducto = {item.data.categoriaBonita}
-                                            precioProducto = {Intl.NumberFormat('es-CO', {style: 'currency', currency: 'COP', minimumFractionDigits: 0}).format(item.data.precio)}
+                                            precioProducto = {plataBonita(item.data.precio)}
                                             cantidadColumnas = {3}
                                         />
                                     ))

@@ -14,6 +14,7 @@ import MyOrder from "./components/Order/MyOrder";
 import Checkout from "./components/Checkout/Checkout";
 import Breadcrumb from "./components/global/Breadcrumb";
 import Error from "./components/global/Error";
+import Newsletter from "./components/Home/Newsletter";
 
 function App() {
   const [data, setData] = useState({
@@ -46,6 +47,7 @@ function App() {
                 <RegularProducts />
               </div>
             </section>
+            <Newsletter />
           </Route>
 
           <Route path="/producto/:id?">
@@ -68,6 +70,7 @@ function App() {
 
           <Route path="/categoria/:nombre_categoria?">
             <Category />
+            <Newsletter />
           </Route>
 
           <Route path="*">
