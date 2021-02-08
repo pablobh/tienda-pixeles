@@ -1,9 +1,9 @@
 const Newsletter = () => {
     return (
-        <section className="section is-primary">
-            <div className="container has-background-primary p-6 has-shadow">
+        <section className="section py-6 has-background-primary">
+            <div className="container">
                 <div className="columns is-vcentered">
-                    <div className="column is-half">
+                    <div className="column is-5">
                         <h3 className="title is-size-3 has-text-weight-bold">
                             Suscríbete
                         </h3>
@@ -11,13 +11,14 @@ const Newsletter = () => {
                             Déjanos tu correo y así estarás enterado de todas nuestras promociones y lanzamientos
                         </p>
                     </div>
-                    <div className="column is-half">
-                        <div className="field is-grouped">
+                    <div className="column is-1"></div>
+                    <div className="column is-6">
+                        <div className="field has-addons">
                             <div className="control is-expanded">
-                                <input className="input is-medium has-shadow" type="email" placeholder="Tu correo..." />
+                                <input className="input is-medium is-fullwidth" type="email" placeholder="Tu correo..." />
                             </div>
                             <p className="control">
-                                <button className="button is-medium is-info has-shadow">
+                                <button className="button is-medium is-info">
                                     Suscribir
                                 </button>
                             </p>

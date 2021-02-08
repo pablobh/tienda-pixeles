@@ -3,6 +3,7 @@ import { Store } from "./../../contexts/Store";
 import { getFirestore } from "../../firebase";
 import firebase from "firebase/app";
 import { FaRegEnvelope } from "react-icons/fa";
+import { Link } from 'react-router-dom';
 
 const Checkout = () => {
     const db = getFirestore();
@@ -13,12 +14,14 @@ const Checkout = () => {
     const [valCorreo, setValCorreo] = useState(false);
     const [valTelefono, setValTelefono] = useState(false);
     const [valCorreoFirma, setValCorreoFirma] = useState(false);
+    const [valPais, setValPais] = useState(false);
     const [datosFormulario, setDatosFormulario] = useState({
         nombre: "",
         apellido: "",
         correo: "",
         confirmar_correo: "",
         telefono: "",
+        pais: "",
     });
     const [idCompra, setIdCompra] = useState("");
 
@@ -87,6 +90,16 @@ const Checkout = () => {
                 }
             } else {
                 setValCorreoFirma(false);
+            }
+        } else if (e.target.name === "pais") {
+            setDatosFormulario({
+                ...datosFormulario,
+                [e.target.name]: e.target.value,
+            });
+            if (e.target.value !== "") {
+                setValPais(true);
+            } else {
+                setValPais(false);
             }
         }
     };
@@ -314,13 +327,24 @@ const Checkout = () => {
                                             )}
                                         </div>
                                     </div>
-                                </div>
-
-                                <div className="columns mt-5">
-                                    <div className="column is-full">
-                                        <h3 className="has-text-naranja">
-                                            Forma de pago
-                                        </h3>
+                                    <div className="column is-half">
+                                        <div className="field">
+                                            <label className="label">
+                                                País
+                                            </label>
+                                            <div className="control">
+                                                <input
+                                                    className="input"
+                                                    type="text"
+                                                    value={
+                                                        datosFormulario.pais
+                                                    }
+                                                    onChange={handleChangeInput}
+                                                    name="pais"
+                                                    placeholder="País"
+                                                />
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                                 {
@@ -328,6 +352,7 @@ const Checkout = () => {
                                     valApellido &&
                                     valTelefono &&
                                     valCorreo &&
+                                    valPais &&
                                     valCorreoFirma ? (
                                         <button className="button is-success is-fullwidth has-text-weight-bold is-medium is-radiusless has-shadow">
                                             Pagar
@@ -341,11 +366,25 @@ const Checkout = () => {
                         <div className="column is-3"></div>
                     </div>
                 ) : (
-                    <p>
-                        La compra se realizó correctamente, tu número de
-                        seguimiento es: {idCompra}
-                    </p>
-                )}
+                    <div className="columns">
+                        <div className="column is-3"></div>
+                        <div className="column is-half has-background-white has-shadow has-rounded-border p-6 has-text-centered">
+                            <h1 className="title has-text-morado">
+                                Compra exitosa
+                            </h1>
+                            <p className="subtitle is-5">
+                                Tu compra se realizó correctamente.
+                            </p>
+                            <p className="is-5 my-6">
+                                Número de órden:<br />
+                                <span className="is-5 has-text-success has-text-weight-bold">{idCompra}</span>
+                            </p>
+                            <Link to="/" className="button is-radiusless is-primary mt-3">Volver al home</Link>
+                        </div>
+                        <div className="column is-3"></div>
+                    </div>
+                )
+            }
             </div>
         </section>
     );
