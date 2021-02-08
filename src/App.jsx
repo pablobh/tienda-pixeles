@@ -4,7 +4,6 @@ import ViewCart from "./components/Cart/ViewCart";
 import Category from "./components/Category/Category";
 import Checkout from "./components/Checkout/Checkout";
 import Footer from "./components/Footer/Footer";
-import Breadcrumb from "./components/global/Breadcrumb";
 import Error from "./components/global/Error";
 import Navbar from "./components/global/Navbar";
 import Newsletter from "./components/global/Newsletter";
@@ -51,12 +50,10 @@ function App() {
           </Route>
 
           <Route path="/producto/:id?">
-            <Breadcrumb />
             <Product />
           </Route>
 
           <Route path="/carrito">
-            <Breadcrumb />
             <ViewCart />
           </Route>
 

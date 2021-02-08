@@ -59,11 +59,19 @@ const Product = (props) => {
         }
     }
 
-    return (
-        id ?
+    return id ? (
+        <>
+            {
+                product !== null ?
+                <Breadcrumb
+                    categoria={product.categoria}
+                    categoriaBonita={product.categoriaBonita}
+                    producto={product.nombre}
+                /> : '' 
+            }
         <section className="section">
             {
-                product ?
+                product ? (
                     <div className="container">
                         <div className="columns pt-3 pb-6 px-4 has-background-white">
                             <div className="column is-6">
@@ -99,14 +107,17 @@ const Product = (props) => {
                                 </div>
                             </div>
                         </div>
-                    </div> :
-                        <Spinner />
-                    }
-                </section>:
-                    <Error 
-                        titulo = "¡Error!"
-                        mensaje = "Falta ID de producto" />
-                );
-}
+                    </div>
+                ) : (
+                    <Spinner />
+                )}
+            </section>{" "}
+        </>
+    ) : (
+            <Error 
+                titulo = "¡Error!"
+                mensaje = "Falta ID de producto" />
+        );
+};
 
 export default Product;

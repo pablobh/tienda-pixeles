@@ -105,7 +105,7 @@ const Checkout = () => {
         user: datosFormulario,
         items: data.items,
         precioTotal: data.precioTotal,
-        estado: "generada",
+        estado: "Generada",
         date: firebase.firestore.Timestamp.fromDate(new Date()),
     };
 
@@ -204,7 +204,7 @@ const Checkout = () => {
                                             </div>
                                             {!valCorreo &&
                                             datosFormulario.correo !== "" ? (
-                                                <p class="help is-danger">
+                                                <p className="help is-danger">
                                                     El correo es inválido
                                                 </p>
                                             ) : (
@@ -298,7 +298,7 @@ const Checkout = () => {
                                             </div>
                                             {!valTelefono &&
                                             datosFormulario.telefono !== "" ? (
-                                                <p class="help is-danger has-text-weight-bold">
+                                                <p className="help is-danger has-text-weight-bold">
                                                     🔴 El telefono debe tener entre 6 y 10 caracteres
                                                 </p>
                                             ) : (
@@ -306,7 +306,7 @@ const Checkout = () => {
                                             )}
                                             {valTelefono &&
                                             datosFormulario.telefono !== "" ? (
-                                                <p class="help is-success has-text-weight-bold">
+                                                <p className="help is-success has-text-weight-bold">
                                                     🟢 El teléfono es correcto
                                                 </p>
                                             ) : (
