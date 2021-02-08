@@ -8,7 +8,7 @@ const ProductCard = (props) => {
                 <div className="card-image has-text-centered">
                     <Link to={`/producto/${props.idProducto}`}>
                         <figure className="image is-square">
-                            <img src={props.thumbProducto} alt="Imagen del producto" />
+                            <img src={`/img/${props.thumbProducto}`} alt={`${props.nombreProducto}`} />
                         </figure>
                     </Link>
                 </div>

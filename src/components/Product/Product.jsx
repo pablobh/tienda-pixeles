@@ -76,7 +76,7 @@ const Product = (props) => {
                         <div className="columns pt-3 pb-6 px-4 has-background-white">
                             <div className="column is-6">
                                 <figure className="image is-square has-shadow">
-                                    <img src={product.foto} alt="Foto gigante del producto" />
+                                    <img src={`/img/${product.foto}`} alt={`${product.nombre}`} />
                                 </figure>
                             </div>
                             <div className="column is-6">

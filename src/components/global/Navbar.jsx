@@ -79,6 +79,12 @@ const Navbar = () => {
                                     Social Media
                                 </Link>
                                 <Link
+                                    to="/categoria/video"
+                                    className="navbar-item"
+                                >
+                                    Video
+                                </Link>
+                                <Link
                                     to="/categoria/web"
                                     className="navbar-item"
                                 >
