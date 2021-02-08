@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import Spinner from '../global/Spinner';
 import { getFirestore } from "./../../firebase";
 import ProductCard from "./ProductCard";
+import { plataBonita } from "./../../models/Functions"
 
 const FeaturedProducts = () => {
     const [items, setItems] = useState([]);
@@ -39,7 +40,7 @@ const FeaturedProducts = () => {
                                     nombreProducto = {item.data.nombre}
                                     categoriaProducto = {item.data.categoria}
                                     categoriaBonitaProducto = {item.data.categoriaBonita}
-                                    precioProducto = {Intl.NumberFormat('es-CO', {style: 'currency', currency: 'COP', minimumFractionDigits: 0}).format(item.data.precio)}
+                                    precioProducto = {plataBonita(item.data.precio)}
                                     cantidadColumnas = {3}
                                 />
                             ))
