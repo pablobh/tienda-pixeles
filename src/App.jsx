@@ -1,20 +1,20 @@
-import "./styles/App.scss";
-import { BrowserRouter, Route, Switch } from "react-router-dom";
 import { useState } from "react";
-import { Store } from "./contexts/Store";
-import Navbar from "./components/global/Navbar";
-import Hero from "./components/Home/Hero";
-import FeaturedProducts from "./components/Product/FeaturedProducts";
-import Footer from "./components/Footer/Footer";
-import Category from "./components/Category/Category";
-import Product from "./components/Product/Product";
-import RegularProducts from "./components/Product/RegularProducts";
+import { BrowserRouter, Route, Switch } from "react-router-dom";
 import ViewCart from "./components/Cart/ViewCart";
-import MyOrder from "./components/Order/MyOrder";
+import Category from "./components/Category/Category";
 import Checkout from "./components/Checkout/Checkout";
+import Footer from "./components/Footer/Footer";
 import Breadcrumb from "./components/global/Breadcrumb";
 import Error from "./components/global/Error";
+import Navbar from "./components/global/Navbar";
 import Newsletter from "./components/global/Newsletter";
+import Hero from "./components/Home/Hero";
+import MyOrder from "./components/Order/MyOrder";
+import FeaturedProducts from "./components/Product/FeaturedProducts";
+import Product from "./components/Product/Product";
+import RegularProducts from "./components/Product/RegularProducts";
+import { Store } from "./contexts/Store";
+import "./styles/App.scss";
 
 function App() {
   const [data, setData] = useState({

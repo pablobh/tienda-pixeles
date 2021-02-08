@@ -1,4 +1,4 @@
-function Footer() {
+const Footer = () => {
     return (
         <footer className="footer has-background-space-black">
             <div className="container">

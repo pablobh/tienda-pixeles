@@ -1,4 +1,4 @@
-function Newsletter() {
+const Newsletter = () => {
     return (
         <section className="section is-primary">
             <div className="container has-background-primary p-6 has-shadow">

@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import { useContext } from "react";
 import { Store } from "./../../contexts/Store";
 
-function Navbar() {
+const Navbar = () => {
     const [data, setData] = useContext(Store);
 
     let todosProductos = 0;

@@ -1,4 +1,4 @@
-function ItemListContainer(props) {
+const ItemListContainer = (props) => {
     return (
         <div className="navbar-item p-3">
             {props.nombreProducto}

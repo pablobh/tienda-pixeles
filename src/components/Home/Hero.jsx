@@ -1,4 +1,4 @@
-function Hero(props) {
+const Hero = (props) => {
     return (
         <section className="section is-primary">
             <div className="container">

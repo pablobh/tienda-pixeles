@@ -1,6 +1,6 @@
 import { FiAlertOctagon } from 'react-icons/fi';
 
-function Error({titulo, mensaje}) {
+const Error = ({titulo, mensaje}) => {
     return (
         <section className="section">
             <div className="container">

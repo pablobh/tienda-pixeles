@@ -1,4 +1,4 @@
-function Spinner() {
+const Spinner = () => {
     return (
         <section className="section has-text-centered">
             <div class="lds-roller">

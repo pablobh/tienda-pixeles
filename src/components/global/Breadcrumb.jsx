@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 
-function Breadcrumb({categoria = null, categoriaBonita = null, producto = null, productoNombre = null}) {
+const Breadcrumb = ({categoria = null, categoriaBonita = null, producto = null, productoNombre = null}) => {
     return (
         <section className="section p-1 has-background-primary-light">
             <div className="container">
