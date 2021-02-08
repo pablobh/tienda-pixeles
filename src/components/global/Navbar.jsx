@@ -6,6 +6,7 @@ import { useContext } from "react";
 import { Store } from "./../../contexts/Store";
 
 const Navbar = () => {
+    // eslint-disable-next-line no-unused-vars
     const [data, setData] = useContext(Store);
 
     let todosProductos = 0;
@@ -42,6 +43,7 @@ const Navbar = () => {
                                 alt="4to Pixel"
                             />
                         </Link>
+                        {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
                         <a
                             role="button"
                             className="navbar-burger burger"
@@ -94,12 +96,13 @@ const Navbar = () => {
                                             return (
                                                 <ItemListContainer
                                                     key={`item_products_${index}`}
+                                                    cantidad={item.cantidad}
                                                     nombreProducto={item.nombre}
                                                 />
                                             );
                                         })}
                                         <div className="navbar-item pt-5">
-                                            <button className="button is-small is-fullwidth is-primary has-text-weight-bold">Ir al carrito</button>
+                                            <Link to="/carrito" className="button is-small is-fullwidth is-primary has-text-weight-bold">Ir al carrito</Link>
                                         </div>
                                     </div>
                                 ) : (

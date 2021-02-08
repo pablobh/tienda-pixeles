@@ -8,6 +8,7 @@ import { plataBonita  } from "../../models/Functions";
 const ViewCart = () => {
     const [data, setData] = useContext(Store);
     const remove = (id) => {
+        data.precioTotal = data.precioTotal - (data.items[data.items.findIndex(item => item.id === id)].precio * data.items[data.items.findIndex(item => item.id === id)].cantidad)
         data.items.splice(data.items.findIndex(item => item.id === id), 1)
         setData({...data}) 
     };
@@ -47,6 +48,7 @@ const ViewCart = () => {
                                                         data.items.map((item, index) => {
                                                             return (
                                                             <CartItem
+                                                                key = {index}
                                                                 categoriaBonitaProducto = {item?.categoriaBonita}
                                                                 nombreProducto = {item?.nombre}
                                                                 cantidadProducto = {item?.cantidad}
@@ -71,7 +73,7 @@ const ViewCart = () => {
 
                                 <div className="columns mt-6 ">
                                     <div className="column is-full has-text-centered">
-                                        <Link to="/checkout" className="button is-info is-large has-text-weight-bold">Hacer pedido</Link>
+                                        <Link to="/checkout" className="button is-info is-large has-text-weight-bold">Finalizar compra</Link>
                                     </div>
                                 </div>
 

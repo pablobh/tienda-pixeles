@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { getFirestore } from "../../firebase";
 import OrderItem from "./OrderItem";
 import { plataBonita  } from "../../models/Functions";
@@ -6,6 +6,7 @@ import { plataBonita  } from "../../models/Functions";
 const MyOrder = (props) => {
     const db = getFirestore();
     const [referencia, setReferencia] = useState("");
+    const [mensajeError, setMensajeError] = useState("");
     const [pedido, setPedidos] = useState({});
     useEffect(() => {});
 
@@ -15,25 +16,33 @@ const MyOrder = (props) => {
 
     const handleSearchPedido = (e) => {
         e.preventDefault();
-        db.collection("ventas")
-            .get()
-            .then((docs) => {
-                let pedi2 = [];
-                docs.forEach((doc) => {
-                    if (doc.id === referencia) {
-                        pedi2.push({ id: doc.id, data: doc.data() });
-                    }
-                });
-                setPedidos(pedi2[0]);
-            })
-            .catch((e) => console.log(e));
+        if (referencia !== '') {
+            db.collection("ventas")
+                .get()
+                .then((docs) => {
+                    let pedi2 = [];
+                    docs.forEach((doc) => {
+                        if (doc.id === referencia) {
+                            pedi2.push({ id: doc.id, data: doc.data() });
+                        }
+                        else {
+                            setMensajeError("Lo sentimos, tu pedido no ha sido encontrado")
+                        }
+                    });
+                    setPedidos(pedi2[0]);
+                })
+                .catch((e) => console.log(e));
+        }
+        else {
+            setMensajeError("La referencia del pedido no puede estar vacía")
+        }
     };
 
     return (
         <section className="section is-medium" id="cart">
             <div className="container">
                 <h1 className="title has-text-morado">Información pedido</h1>
-                <p>Utiliza este buscador para conocer el estado de tu pedido</p>
+                <p className="is-size-5">Usa este buscador para conocer el estado de tu pedido</p>
                 <div className="columns">
                     <div className="column is-full mt-6">
                         <form onSubmit={handleSearchPedido}>
@@ -53,7 +62,7 @@ const MyOrder = (props) => {
                             </div>
                         </form>
                         {
-                            Object.keys(pedido).length > 0 ? (
+                            pedido !== undefined && Object.keys(pedido).length > 0 ? (
                                 <div className="columns mt-5">
                                     <div className="column is-half">
                                         <h4 className="title is-size-5 has-text-naranja">Datos personales</h4>
@@ -83,11 +92,11 @@ const MyOrder = (props) => {
                                     </div>
                                 </div>
                             ) : (
-                                "Aquí aparecerá la información de tu pedido"
+                                <p className="has-text-danger has-font-weight-bold is-size-4 mt-5">{mensajeError}</p>
                             )
                         }
                         {
-                            Object.keys(pedido).length > 0 ? (
+                            pedido !== undefined && Object.keys(pedido).length > 0 ? (
                                 <div className="columns mt-3">
                                     <div className="column is-full">
                                         <h4 className="title is-size-5 has-text-naranja">Productos</h4>
@@ -106,6 +115,7 @@ const MyOrder = (props) => {
                                                     pedido.data.items.map((item, index) => {
                                                         return (
                                                             <OrderItem
+                                                                key = {index}
                                                                 categoriaBonitaProducto={item?.categoriaBonita}
                                                                 nombreProducto={item?.nombre}
                                                                 cantidadProducto={item?.cantidad}
@@ -124,7 +134,7 @@ const MyOrder = (props) => {
                             )
                         }
                         {
-                            Object.keys(pedido).length > 0 ? (
+                            pedido !== undefined && Object.keys(pedido).length > 0 ? (
                                 <div className="columns has-background-space-black mx-1">
                                     <div className="column is-full has-text-right">
                                         <h3 className="title is-4 has-text-cremita">
