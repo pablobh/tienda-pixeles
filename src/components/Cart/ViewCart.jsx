@@ -8,10 +8,8 @@ import { plataBonita  } from "../../models/Functions";
 const ViewCart = () => {
     const [data, setData] = useContext(Store);
     const remove = (id) => {
-        console.log(id);
         data.items.splice(data.items.findIndex(item => item.id === id), 1)
         setData({...data}) 
-        console.log(data);  
     };
     return (
         <section className="section is-medium" id="cart">

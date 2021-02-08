@@ -14,7 +14,7 @@ import MyOrder from "./components/Order/MyOrder";
 import Checkout from "./components/Checkout/Checkout";
 import Breadcrumb from "./components/global/Breadcrumb";
 import Error from "./components/global/Error";
-import Newsletter from "./components/Home/Newsletter";
+import Newsletter from "./components/global/Newsletter";
 
 function App() {
   const [data, setData] = useState({

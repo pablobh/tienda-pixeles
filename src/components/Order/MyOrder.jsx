@@ -15,7 +15,6 @@ const MyOrder = (props) => {
 
   const handleSearchPedido = (e) => {
     e.preventDefault();
-    console.log(referencia);
     db.collection("ventas")
       .get()
       .then((docs) => {
@@ -25,7 +24,6 @@ const MyOrder = (props) => {
             pedi2.push({ id: doc.id, data: doc.data() });
           }
         });
-        console.log(pedi2[0]);
         setPedidos(pedi2[0]);
       })
       .catch((e) => console.log(e));
