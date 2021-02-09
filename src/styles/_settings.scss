@@ -1,30 +1,28 @@
 @charset "utf-8";
 
 // General - Colores
-$space-black:             #193639;
-$verde:                   #34b7ae;
-$morado:                  #9d2167;
-$naranja:                 #f75328;
-$yellow:                  #f6ef57;
-$cremita:                 #f5f8e3;
+$space-black:                                       #193639;
+$verde:                                             #34b7ae;
+$morado:                                            #9d2167;
+$naranja:                                           #f75328;
+$yellow:                                            #f6ef57;
+$cremita:                                           #f5f8e3;
 
 // Bulma - Variables básicas
-$family-sans-serif:         "Red Hat Display", sans-serif;
-$primary:                   $verde;
-$link:                      $verde;
-$widescreen-enabled:        true;
-$fullhd-enabled:            true;
+$family-sans-serif:                                   "Red Hat Display", sans-serif;
+$primary:                                             $verde;
+$link:                                                $verde;
+$widescreen-enabled:                                  false;
+$fullhd-enabled:                                      true;
 
 // Bulma - Variables de los componentes
-$body-background-color:     $cremita;
-// $control-border-width:      1px;
-// $input-border-color:        transparent;
-$pageMargin:                2rem;
-$spacer:                    $pageMargin;
-$radius:                    13px;
+$body-background-color:                               $cremita;
+$pageMargin:                                          2rem;
+$spacer:                                              $pageMargin;
+$radius:                                              13px;
 
-$table-cell-border:         1px solid $verde;
-$table-body-background-color:   rgba(255, 255, 255, 0.568);
-$table-striped-row-even-background-color: rgba($verde, .1);
-$table-row-hover-background-color: rgba($verde, .55);
-$table-striped-row-even-hover-background-color: rgba($verde, .55);
+$table-cell-border:                                    1px solid $verde;
+$table-body-background-color:                        rgba(255, 255, 255, 0.568);
+$table-striped-row-even-background-color:              rgba($verde, .1);
+$table-row-hover-background-color:                     rgba($verde, .55);
+$table-striped-row-even-hover-background-color:        rgba($verde, .55);

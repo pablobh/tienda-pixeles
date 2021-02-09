@@ -7,7 +7,7 @@ const OrderItem = (props) => {
             <td>{props.precioProducto}</td>
             <td>{props.precioProductoTotal}</td>
         </tr>
-    )
-}
+    );
+};
 
 export default OrderItem;

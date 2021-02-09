@@ -6,8 +6,8 @@ const QuantitySelector = ({ restar, sumar, cantidad }) => {
                     className="button is-danger is-light"
                     disabled={cantidad === 1 ? "disabled" : null}
                     onClick={restar}
-                    >
-                -
+                >
+                    -
                 </button>
             </div>
             <div className="control">
@@ -16,13 +16,10 @@ const QuantitySelector = ({ restar, sumar, cantidad }) => {
                     type="number"
                     value={cantidad}
                     readOnly
-                    />
+                />
             </div>
             <div className="control">
-                <button
-                    className="button is-success is-light"
-                    onClick={sumar}
-                    >
+                <button className="button is-success is-light" onClick={sumar}>
                     +
                 </button>
             </div>

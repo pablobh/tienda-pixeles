@@ -3,7 +3,7 @@ import { Store } from "./../../contexts/Store";
 import { getFirestore } from "../../firebase";
 import firebase from "firebase/app";
 import { FaRegEnvelope } from "react-icons/fa";
-import { Link } from 'react-router-dom';
+import { Link } from "react-router-dom";
 
 const Checkout = () => {
     const db = getFirestore();
@@ -135,6 +135,7 @@ const Checkout = () => {
                     cantidad: 0,
                     precioTotal: 0,
                 });
+                localStorage.removeItem("dataTienda");
             })
             .catch((e) => console.log(e));
     };
@@ -236,7 +237,8 @@ const Checkout = () => {
                                     <div className="column is-half">
                                         <div className="field">
                                             <label className="label">
-                                                Correo electrónico (Confirmación)
+                                                Correo electrónico
+                                                (Confirmación)
                                             </label>
                                             <div className="control has-icons-left">
                                                 {!valCorreo ? (
@@ -273,7 +275,8 @@ const Checkout = () => {
                                             datosFormulario.confirmar_correo !==
                                                 "" ? (
                                                 <div className="help is-danger has-text-weight-bold">
-                                                    🔴 Los correos no son iguales
+                                                    🔴 Los correos no son
+                                                    iguales
                                                 </div>
                                             ) : (
                                                 ""
@@ -312,7 +315,8 @@ const Checkout = () => {
                                             {!valTelefono &&
                                             datosFormulario.telefono !== "" ? (
                                                 <p className="help is-danger has-text-weight-bold">
-                                                    🔴 El telefono debe tener entre 6 y 10 caracteres
+                                                    🔴 El telefono debe tener
+                                                    entre 6 y 10 caracteres
                                                 </p>
                                             ) : (
                                                 ""
@@ -336,9 +340,7 @@ const Checkout = () => {
                                                 <input
                                                     className="input"
                                                     type="text"
-                                                    value={
-                                                        datosFormulario.pais
-                                                    }
+                                                    value={datosFormulario.pais}
                                                     onChange={handleChangeInput}
                                                     name="pais"
                                                     placeholder="País"
@@ -347,20 +349,18 @@ const Checkout = () => {
                                         </div>
                                     </div>
                                 </div>
-                                {
-                                    valNombre &&
-                                    valApellido &&
-                                    valTelefono &&
-                                    valCorreo &&
-                                    valPais &&
-                                    valCorreoFirma ? (
-                                        <button className="button is-success is-fullwidth has-text-weight-bold is-medium is-radiusless has-shadow">
-                                            Pagar
-                                        </button>
-                                    ) : (
-                                        ""
-                                    )
-                                }
+                                {valNombre &&
+                                valApellido &&
+                                valTelefono &&
+                                valCorreo &&
+                                valPais &&
+                                valCorreoFirma ? (
+                                    <button className="button is-success is-fullwidth has-text-weight-bold is-medium is-radiusless has-shadow">
+                                        Pagar
+                                    </button>
+                                ) : (
+                                    ""
+                                )}
                             </form>
                         </div>
                         <div className="column is-3"></div>
@@ -376,15 +376,22 @@ const Checkout = () => {
                                 Tu compra se realizó correctamente.
                             </p>
                             <p className="is-5 my-6">
-                                Número de órden:<br />
-                                <span className="is-5 has-text-success has-text-weight-bold">{idCompra}</span>
+                                Número de órden:
+                                <br />
+                                <span className="is-5 has-text-success has-text-weight-bold">
+                                    {idCompra}
+                                </span>
                             </p>
-                            <Link to="/" className="button is-radiusless is-primary mt-3">Volver al home</Link>
+                            <Link
+                                to="/"
+                                className="button is-radiusless is-primary mt-3"
+                            >
+                                Volver al home
+                            </Link>
                         </div>
                         <div className="column is-3"></div>
                     </div>
-                )
-            }
+                )}
             </div>
         </section>
     );

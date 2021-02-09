@@ -9,6 +9,14 @@ const Navbar = () => {
     // eslint-disable-next-line no-unused-vars
     const [data, setData] = useContext(Store);
 
+    if (
+        localStorage.getItem("dataTienda") !== undefined &&
+        localStorage.getItem("dataTienda") !== null &&
+        data.items.length === 0
+    ) {
+        setData(JSON.parse(localStorage.getItem("dataTienda")));
+    }
+
     let todosProductos = 0;
     data.items.forEach((element) => {
         todosProductos = todosProductos + element.cantidad;
@@ -32,7 +40,11 @@ const Navbar = () => {
     });
     return (
         <header className="section is-paddingless is-marginless">
-            <nav className="navbar" role="navigation" aria-label="main navigation">
+            <nav
+                className="navbar"
+                role="navigation"
+                aria-label="main navigation"
+            >
                 <div className="container">
                     <div className="navbar-brand">
                         <Link to="/" className="navbar-item">
@@ -108,7 +120,12 @@ const Navbar = () => {
                                             );
                                         })}
                                         <div className="navbar-item pt-5">
-                                            <Link to="/carrito" className="button is-small is-fullwidth is-primary has-text-weight-bold">Ir al carrito</Link>
+                                            <Link
+                                                to="/carrito"
+                                                className="button is-small is-fullwidth is-primary has-text-weight-bold"
+                                            >
+                                                Ir al carrito
+                                            </Link>
                                         </div>
                                     </div>
                                 ) : (
@@ -121,6 +138,6 @@ const Navbar = () => {
             </nav>
         </header>
     );
-}
+};
 
 export default Navbar;

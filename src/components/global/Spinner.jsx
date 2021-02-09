@@ -13,6 +13,6 @@ const Spinner = () => {
             </div>
         </section>
     );
-}
+};
 
 export default Spinner;
